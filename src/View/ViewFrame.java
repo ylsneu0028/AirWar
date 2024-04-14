@@ -11,7 +11,7 @@ public class ViewFrame extends JFrame {
   private ViewPanel panel;
 
   public ViewFrame() {
-    this.setTitle("欧美飞机大战！");
+    this.setTitle("Air War");
     this.setSize(560, 824);
     this.setLocationRelativeTo(null);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

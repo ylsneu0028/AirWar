@@ -29,7 +29,7 @@ public class ViewPanel extends JPanel {
 
 
   public ViewPanel() {
-    this.backImage = new ImageIcon("image/background1.png");
+    this.backImage = new ImageIcon("image/background.png");
     this.heroImage = new ImageIcon("image/hero1-0.png");
     this.enemyOneImage = new ImageIcon(Constants.enemyOneImagePath);
     this.bulletOneImage = new ImageIcon(Constants.bulletOneImagePath);
