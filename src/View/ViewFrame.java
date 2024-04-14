@@ -1,6 +1,6 @@
 package View;
 
-import Model.EnemyOne;
+import Model.*;
 import java.awt.event.MouseAdapter;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -36,9 +36,11 @@ public class ViewFrame extends JFrame {
     panel.setHeroImage(heroImage);
   }
 
-  public void setEnemys(EnemyOne[] enemyOnes) {
+  public void setEnemyOnes(Enemy[] enemyOnes) {
     panel.setEnemyOnes(enemyOnes);
   }
+
+  public void setBulletOnes(Bullet[] bulletOnes) { panel.setBulletOnes(bulletOnes);}
 
   public void addMouseAListener(MouseAdapter mouseEvent) {
     addMouseListener(mouseEvent);

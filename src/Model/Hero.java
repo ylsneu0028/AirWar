@@ -13,7 +13,7 @@ public class Hero implements Entity {
   private int width;
   private int height;
   //int score;
-  //int life;
+  int life;
   private int fire;
   private ImageIcon[] images;
   private int index;
@@ -25,8 +25,9 @@ public class Hero implements Entity {
     height = image.getIconHeight();
     //score=0;
     //life=3;
-    fire = 0;//初始值为0
+    fire = 1;//初始值为0
     images = new ImageIcon[4];
+    life = 5;
 
     for (int i = 0; i < images.length; i++) {
       images[i] = new ImageIcon("image/hero1-" + i + ".png");

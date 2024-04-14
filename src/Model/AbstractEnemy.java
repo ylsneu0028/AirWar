@@ -14,6 +14,7 @@ abstract class AbstractEnemy implements Entity {
   protected int ySpeed;
   protected int xSpeed;
   protected int life;
+  protected int type;
 
   @Override
   public void move() {
