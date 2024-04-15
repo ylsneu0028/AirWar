@@ -19,6 +19,8 @@ public class ViewPanel extends JPanel {
   private ImageIcon enemyOneImage;
   @Setter
   private Enemy[] enemyOnes;
+  @Setter
+  private Coordinate backgroundCoordinate;
 
   private ImageIcon bulletOneImage;
   @Setter
@@ -41,7 +43,8 @@ public class ViewPanel extends JPanel {
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
     // Draw background
-    g.drawImage(backImage.getImage(), 0, 0, this);
+    g.drawImage(backImage.getImage(), 0, backgroundCoordinate.getY(), this);
+    System.out.println(backgroundCoordinate.getY());
     // Draw hero
     g.drawImage(heroImage.getImage(), heroCoordinate.getX(), heroCoordinate.getY(), this);
     System.out.println("draw hero");

@@ -32,6 +32,7 @@ public class ViewFrame extends JFrame {
     panel.setHeroCoordinate(coordinate);
   }
 
+  public void setBackground(Coordinate coordinate) { panel.setBackground();}
   public void setHeroImage(ImageIcon heroImage) {
     panel.setHeroImage(heroImage);
   }

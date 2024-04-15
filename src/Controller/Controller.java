@@ -28,8 +28,9 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   private int enemyOneIndex = 0;
   private Enemy[] enemyOnes;
   private BulletCollection bulletOnes;
-
+  private Background background;
   public Controller(Hero hero, ViewFrame view) {
+    this.view.setBackground();
     this.hero = hero;
     this.view = view;
     this.view.addMouseAListener(this);
@@ -62,6 +63,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       System.out.println("敌机1：" + enemyOnes.length);
     }
   }
+
 
   public void createBullets(BulletCollection bulletArray, int type, int bulletWidth,
       String bulletImagePath) {
@@ -226,13 +228,22 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       }
     }
   }
+  public void moveBackground() {
+    background.move();
+  }
+
+  public void createBackground() {
+    background = new Background();
+  }
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    createBackground();
+    moveBackground();
     hero.move();
     this.view.setHeroImage(this.hero.getImage());
     this.view.setHeroCoordinate(this.hero.getCoordinate());
-
+    moveBackground();
     creatEnemys();
     moveEnemys();
     EnemyHitHero();
