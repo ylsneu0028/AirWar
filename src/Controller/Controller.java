@@ -34,12 +34,13 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   private Enemy[] enemyOnes;
   private BossCollection bossOnes;
   private BulletCollection bulletOnes;
-  private Background background;
+  private Background background = new Background();
   public Controller(Hero hero, ViewFrame view) {
-    this.view.setBackground();
+
     this.hero = hero;
     this.view = view;
     this.view.addMouseAListener(this);
+    this.view.setBackground(this.background.getCoordinate());
     this.view.setHeroImage(this.hero.getImage());
     this.view.setHeroCoordinate(this.hero.getCoordinate());
     Initialization();
@@ -277,6 +278,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   public void actionPerformed(ActionEvent e) {
     createBackground();
     moveBackground();
+    this.view.setBackground(this.background.getCoordinate());
     hero.move();
     this.view.setHeroImage(this.hero.getImage());
     this.view.setHeroCoordinate(this.hero.getCoordinate());

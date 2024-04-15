@@ -12,7 +12,7 @@ public class Background {
   int ySpeed;
 
   public Background() {
-    coordinate = new Coordinate(0, 0);
+    this.coordinate = new Coordinate(0, 0);
     image = new ImageIcon("image/Background.png");
     width = image.getIconWidth();
     height = image.getIconHeight();
