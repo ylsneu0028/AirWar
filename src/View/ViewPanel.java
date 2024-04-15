@@ -25,6 +25,7 @@ public class ViewPanel extends JPanel {
   private ImageIcon bulletOneImage;
   @Setter
   private Bullet[] bulletOnes;
+  /* Step 3 */
   private ImageIcon bossOneImage;
   @Setter
   private Boss[] bossOnes;
@@ -41,7 +42,7 @@ public class ViewPanel extends JPanel {
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
-    // Draw background
+     // Draw background
     g.drawImage(backImage.getImage(), 0, backgroundCoordinate.getY(), this);
     System.out.println(backgroundCoordinate.getY());
     // Draw hero
@@ -52,7 +53,7 @@ public class ViewPanel extends JPanel {
       g.drawImage(enemyOnes[i].getImage().getImage(), enemyOnes[i].getCoordinate().getX(),
           enemyOnes[i].getCoordinate().getY(), null);
     }
-    // Draw boss
+    // Draw boss: Step 4
     for (int i = 0; i < bossOnes.length; i++) {
       g.drawImage(bossOnes[i].getImage().getImage(), bossOnes[i].getCoordinate().getX(), bossOnes[i].getCoordinate().getY(), null);
     }

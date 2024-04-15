@@ -32,6 +32,7 @@ public class ViewFrame extends JFrame {
   }
 
   public void setBackground(Coordinate backgroundCoordinate) { panel.setBackground(backgroundCoordinate);}
+
   public void setHeroImage(ImageIcon heroImage) {
     panel.setHeroImage(heroImage);
   }
@@ -40,6 +41,7 @@ public class ViewFrame extends JFrame {
     panel.setEnemyOnes(enemyOnes);
   }
 
+  /* Step 5*/
   public void setBossOnes(Boss[] bossOnes) {
     panel.setBossOnes(bossOnes);
   }

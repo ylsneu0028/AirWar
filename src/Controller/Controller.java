@@ -32,11 +32,11 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   private Bullet bulletOne;
   private int enemyOneIndex = 0;
   private Enemy[] enemyOnes;
+  /* Step 6*/
   private BossCollection bossOnes;
   private BulletCollection bulletOnes;
   private Background background = new Background();
   public Controller(Hero hero, ViewFrame view) {
-
     this.hero = hero;
     this.view = view;
     this.view.addMouseAListener(this);
@@ -51,6 +51,8 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
         Constants.enemyOneYspeed, Constants.enemyOneLife, 1);
     this.enemyOnes = new Enemy[0];
     this.bulletOnes = new BulletCollection();
+    /* Step 7*/
+    this.bossOnes = new BossCollection();
   }
 
 
@@ -58,7 +60,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     new Timer(70, this).start();
   }
 
-  public void creatEnemys() {
+  public void createEnemys() {
     // 控制住敌机生成的频率
     enemyOneIndex++;
     if (enemyOneIndex % 96 == 0) {
@@ -134,10 +136,11 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       }
     }
   }
+  /* Step 8 */
   public void createBoss(BossCollection bosses, int typeVal) {
     // 控制住敌机生成的频率
     bosses.setBossIndex(bosses.getBossIndex() + 1);
-    if (bosses.getBossIndex() % 2111 == 0) {
+    if (bosses.getBossIndex() % 100 == 0) {
       bosses.setBossIndex(0);
       Boss boss = null;
       if(typeVal == 1) {
@@ -157,6 +160,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     }
   }
 
+  /* Step 9 */
   public void moveBoss(BossCollection bosses) {
     // 面板中每架敌机都得移动
     for (int i = 0; i < bosses.getBossArray().length; i++) {
@@ -247,6 +251,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     }
   }
 
+  /* Step 10*/
   public void removeBoss(BossCollection bosses) {
     for (int i = 0; i < bosses.getBossArray().length; i++) {
       if (bosses.getBossArray()[i] != null && bosses.getBossArray()[i].getCoordinate().getY() > windowHeight * 2) {
@@ -280,19 +285,27 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     moveBackground();
     this.view.setBackground(this.background.getCoordinate());
     hero.move();
-    this.view.setHeroImage(this.hero.getImage());
-    this.view.setHeroCoordinate(this.hero.getCoordinate());
     moveBackground();
-    creatEnemys();
+    createEnemys();
     moveEnemys();
     EnemyHitHero();
     createBullets(this.bulletOnes, 1, bulletOneWidth, bulletOneImagePath);
     moveBullets(this.bulletOnes);
     removeBullet(this.bulletOnes);
     bulletHitEnemy(this.bulletOnes);
+    /* Step 11: call the action functions */
+    createBoss(this.bossOnes,1);
+    moveBoss(this.bossOnes);
+    removeBoss(this.bossOnes);
     removeEnemyOne();
+
+    /* Step 12: set the updated info to view */
+    this.view.setHeroImage(this.hero.getImage());
+    this.view.setHeroCoordinate(this.hero.getCoordinate());
     this.view.setEnemyOnes(this.enemyOnes);
     this.view.setBulletOnes(this.bulletOnes.getBulletArray());
+    this.view.setBossOnes(this.bossOnes.getBossArray());
+
     view.paint();
   }
 
