@@ -1,7 +1,12 @@
 package Controller;
 
+import static Utils.Constants.bossOneImagePath;
+import static Utils.Constants.bossOneLife;
+import static Utils.Constants.bossOneXspeed;
+import static Utils.Constants.bossOneYspeed;
 import static Utils.Constants.bulletOneImagePath;
 import static Utils.Constants.bulletOneWidth;
+import static Utils.Constants.windowHeight;
 
 import Utils.Constants;
 import Utils.Coordinate;
@@ -23,10 +28,11 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   private final Hero hero;
   private final ViewFrame view;
   private Enemy enemyOne;
+  private Boss bossOne;
   private Bullet bulletOne;
-  private Bullet bulletTwo;
   private int enemyOneIndex = 0;
   private Enemy[] enemyOnes;
+  private BossCollection bossOnes;
   private BulletCollection bulletOnes;
   private Background background;
   public Controller(Hero hero, ViewFrame view) {
@@ -127,11 +133,33 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       }
     }
   }
+  public void createBoss(BossCollection bosses, int typeVal) {
+    // 控制住敌机生成的频率
+    bosses.setBossIndex(bosses.getBossIndex() + 1);
+    if (bosses.getBossIndex() % 2111 == 0) {
+      bosses.setBossIndex(0);
+      Boss boss = null;
+      if(typeVal == 1) {
+        boss = new Boss(bossOneImagePath,bossOneXspeed,bossOneYspeed, bossOneLife, 1);
+      }
+      Boss[] bossesCopy = Arrays.copyOf(bosses.getBossArray(), bosses.getBossArray().length + 1);
+      bossesCopy[bossesCopy.length - 1] = boss;
+      bosses.setBossArray(bossesCopy);
+      System.out.println("boss1：" + bosses.getBossArray().length);
+    }
 
+  }
   public void moveEnemys() {
     // 面板中每架敌机都得移动
     for (Enemy one : enemyOnes) {
       one.move();
+    }
+  }
+
+  public void moveBoss(BossCollection bosses) {
+    // 面板中每架敌机都得移动
+    for (int i = 0; i < bosses.getBossArray().length; i++) {
+      bosses.getBossArray()[i].move();
     }
   }
 
@@ -214,6 +242,15 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       if (enemyOnes[i] != null && enemyOnes[i].getCoordinate().getY() > 560 * 2) {
         enemyOnes[i] = enemyOnes[enemyOnes.length - 1];
         enemyOnes = Arrays.copyOf(enemyOnes, enemyOnes.length - 1);
+      }
+    }
+  }
+
+  public void removeBoss(BossCollection bosses) {
+    for (int i = 0; i < bosses.getBossArray().length; i++) {
+      if (bosses.getBossArray()[i] != null && bosses.getBossArray()[i].getCoordinate().getY() > windowHeight * 2) {
+        bosses.getBossArray()[i] = bosses.getBossArray()[bosses.getBossArray().length - 1];
+        bosses.setBossArray(Arrays.copyOf(bosses.getBossArray(), bosses.getBossArray().length - 1));
       }
     }
   }

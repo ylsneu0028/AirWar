@@ -25,9 +25,9 @@ public class ViewPanel extends JPanel {
   private ImageIcon bulletOneImage;
   @Setter
   private Bullet[] bulletOnes;
-//  private ImageIcon enemyTwoImage;
-//  @Setter
-//  private EnemyOne[] enemyTwos;
+  private ImageIcon bossOneImage;
+  @Setter
+  private Boss[] bossOnes;
 
 
   public ViewPanel() {
@@ -35,8 +35,7 @@ public class ViewPanel extends JPanel {
     this.heroImage = new ImageIcon("image/hero1-0.png");
     this.enemyOneImage = new ImageIcon(Constants.enemyOneImagePath);
     this.bulletOneImage = new ImageIcon(Constants.bulletOneImagePath);
-//    this.enemyTwoImage =  new ImageIcon("image/enemy2.png");
-
+    this.bulletOneImage = new ImageIcon((Constants.bossOneImagePath));
   }
 
   @Override
@@ -53,17 +52,15 @@ public class ViewPanel extends JPanel {
       g.drawImage(enemyOnes[i].getImage().getImage(), enemyOnes[i].getCoordinate().getX(),
           enemyOnes[i].getCoordinate().getY(), null);
     }
-    System.out.println("wtffff" + bulletOnes.length);
+    // Draw boss
+    for (int i = 0; i < bossOnes.length; i++) {
+      g.drawImage(bossOnes[i].getImage().getImage(), bossOnes[i].getCoordinate().getX(), bossOnes[i].getCoordinate().getY(), null);
+    }
     // Draw bullet
     for (int i = 0; i < bulletOnes.length; i++) {
       g.drawImage(bulletOnes[i].getImage().getImage(), bulletOnes[i].getCoordinate().getX(), bulletOnes[i].getCoordinate().getY(), null);
       System.out.println("draw bullet");
     }
 
-
-
-//    for (int i = 0; i < enemyTwos.length; i++) {
-//      g.drawImage(enemyTwos[i].getImage().getImage(), enemyTwos[i].getCoordinate().getX(), enemyTwos[i].getCoordinate().getY(), null);
-//    }
   }
 }

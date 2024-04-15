@@ -18,7 +18,6 @@ public class ViewFrame extends JFrame {
     this.setResizable(true);
 
     this.panel = new ViewPanel();
-    // jPanel.action();
     this.add(panel);
     this.setVisible(true);
   }
@@ -41,6 +40,9 @@ public class ViewFrame extends JFrame {
     panel.setEnemyOnes(enemyOnes);
   }
 
+  public void setBossOnes(Boss[] bossOnes) {
+    panel.setBossOnes(bossOnes);
+  }
   public void setBulletOnes(Bullet[] bulletOnes) { panel.setBulletOnes(bulletOnes);}
 
   public void addMouseAListener(MouseAdapter mouseEvent) {
