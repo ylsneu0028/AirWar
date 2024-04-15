@@ -37,6 +37,10 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   private BulletCollection bulletOnes;
   private Background background = new Background();
   public Controller(Hero hero, ViewFrame view) {
+<<<<<<< HEAD
+=======
+//    this.view.setBackground();
+>>>>>>> 2af5f54 (update boss methods)
     this.hero = hero;
     this.view = view;
     this.view.addMouseAListener(this);
