@@ -13,7 +13,7 @@ abstract class AbstractEnemy implements Entity {
   protected int height;
   protected int ySpeed;
   protected int xSpeed;
-  protected int life;// sss
+  protected int life;
   protected int type;
 
   @Override

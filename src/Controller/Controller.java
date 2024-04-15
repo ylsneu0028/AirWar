@@ -248,8 +248,8 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
 
   @Override
   public void mouseMoved(MouseEvent e) {
-    System.out.println("鼠标移动事件");
-    // 获取鼠标位置
+    System.out.println("Mouse movement event");
+    // Mouse movement event
     int heroWidth = hero.getWidth();
     int heroHeight = hero.getHeight();
     Coordinate heroCoordinate = new Coordinate(e.getX() - heroWidth / 2, e.getY() - heroHeight / 2);
@@ -258,7 +258,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   }
 
   public void mouseClicked(MouseEvent e) {
-    System.out.println("鼠标点击事件");
+    System.out.println("Mouse click event");
 //    this.go();
   }
 }
