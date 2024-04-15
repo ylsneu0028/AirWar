@@ -45,7 +45,9 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     this.view.setHeroCoordinate(this.hero.getCoordinate());
     Initialization();
   }
-
+  public void createBackground() {
+    background = new Background();
+  }
   public void Initialization() {
     this.enemyOne = new Enemy(Constants.enemyOneImagePath, Constants.enemyOneXspeed,
         Constants.enemyOneYspeed, Constants.enemyOneLife, 1);
@@ -53,6 +55,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     this.bulletOnes = new BulletCollection();
     /* Step 7*/
     this.bossOnes = new BossCollection();
+    this.createBackground();
   }
 
 
@@ -272,18 +275,23 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     }
   }
   public void moveBackground() {
+    // Logic to update the background's position
     background.move();
+    // Ensure the coordinate is updated after moving
+    this.view.setBackground(background.getCoordinate());
   }
 
-  public void createBackground() {
-    background = new Background();
-  }
+
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    createBackground();
+
+    System.out.println("action"+this.background.getCoordinate().getY());
     moveBackground();
+    System.out.println("action"+this.background.getCoordinate().getY());
+    // Update other game states
     this.view.setBackground(this.background.getCoordinate());
+    view.paint();  // This should ideally call repaint() inside
     hero.move();
     moveBackground();
     createEnemys();

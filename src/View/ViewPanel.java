@@ -20,7 +20,8 @@ public class ViewPanel extends JPanel {
   @Setter
   private Enemy[] enemyOnes;
   @Setter
-  private Coordinate backgroundCoordinate = new Coordinate(0,0);
+  private Coordinate backgroundCoordinate;
+
 
   private ImageIcon bulletOneImage;
   @Setter
@@ -45,6 +46,7 @@ public class ViewPanel extends JPanel {
      // Draw background
     g.drawImage(backImage.getImage(), 0, backgroundCoordinate.getY(), this);
     System.out.println(backgroundCoordinate.getY());
+
     // Draw hero
     g.drawImage(heroImage.getImage(), heroCoordinate.getX(), heroCoordinate.getY(), this);
     System.out.println("draw hero");
@@ -66,6 +68,4 @@ public class ViewPanel extends JPanel {
   }
 
 
-  public void setBackground(Coordinate backgroundCoordinate) {
-  }
 }
