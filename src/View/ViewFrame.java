@@ -17,9 +17,14 @@ public class ViewFrame extends JFrame {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(true);
 
+    System.out.println("1111");
     this.panel = new ViewPanel();
+    System.out.println("2222");
     this.add(panel);
+    System.out.println("33333");
     this.setVisible(true);
+    System.out.println("444444");
+
   }
 
 
@@ -46,6 +51,8 @@ public class ViewFrame extends JFrame {
     panel.setBossOnes(bossOnes);
   }
   public void setBulletOnes(Bullet[] bulletOnes) { panel.setBulletOnes(bulletOnes);}
+
+  public void setBossBulletOnes(BossBullet[] bossBulletOnes) { panel.setBossBulletOnes(bossBulletOnes);}
 
   public void addMouseAListener(MouseAdapter mouseEvent) {
     addMouseListener(mouseEvent);

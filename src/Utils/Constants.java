@@ -5,18 +5,31 @@ import javax.swing.ImageIcon;
 public class Constants {
   public static int windowWidth = 560;
   public static int windowHeight = 824;
+
+  // Parameters of Enemy type object enemyOne
   public static String enemyOneImagePath = "image/enemy1.png";
   public static int enemyOneLife = 1;
   public static int enemyOneXspeed = 3;
   public static int enemyOneYspeed = 3;
 
+  public static int enemyOneType = 1;
+
+  // Parameters of Boss type object bossOne
   public static String bossOneImagePath = "image/boss1.png";
-  public static int bossOneLife = 250;
+  public static int bossOneLife = 25;
   public static int bossOneXspeed = 1;
   public static int bossOneYspeed = 1;
 
+  // Parameters of Bullet type object bulletOne
   public static String bulletOneImagePath = "image/bullet1.png";
   public static int bulletOneWidth = new ImageIcon(bulletOneImagePath).getIconWidth();
+
+  // Parameters of BossBullet type object BossBulletOne
+  public static String bossBulletOneImagePath = "image/boss1bullet1.png";
+  public static int bossBulletOneWidth = new ImageIcon(bossBulletOneImagePath).getIconWidth();
+  public static int bossBulletOneLevel = 2;
+  public static int bossBulletOneType = 1;
+
 
 
 }

@@ -40,7 +40,6 @@ public class Hero implements Entity {
   @Override
   public void move() {
     index++;
-    System.out.println(index);
     image = images[index / 4 % 3];
   }
 

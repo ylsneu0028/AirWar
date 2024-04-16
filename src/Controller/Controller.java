@@ -1,12 +1,22 @@
 package Controller;
 
+import static Utils.Constants.bossBulletOneImagePath;
+import static Utils.Constants.bossBulletOneLevel;
+import static Utils.Constants.bossBulletOneType;
+import static Utils.Constants.bossBulletOneWidth;
 import static Utils.Constants.bossOneImagePath;
 import static Utils.Constants.bossOneLife;
 import static Utils.Constants.bossOneXspeed;
 import static Utils.Constants.bossOneYspeed;
 import static Utils.Constants.bulletOneImagePath;
 import static Utils.Constants.bulletOneWidth;
+import static Utils.Constants.enemyOneImagePath;
+import static Utils.Constants.enemyOneLife;
+import static Utils.Constants.enemyOneType;
+import static Utils.Constants.enemyOneXspeed;
+import static Utils.Constants.enemyOneYspeed;
 import static Utils.Constants.windowHeight;
+import static Utils.Constants.windowWidth;
 
 import Utils.Constants;
 import Utils.Coordinate;
@@ -16,6 +26,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import Model.*;
 import View.*;
@@ -30,13 +41,17 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   private Enemy enemyOne;
   private Boss bossOne;
   private Bullet bulletOne;
+  private BossBullet bossBulletOne;
   private int enemyOneIndex = 0;
-  private Enemy[] enemyOnes;
+  private EnemyCollection enemyOnes;
   /* Step 6*/
   private BossCollection bossOnes;
   private BulletCollection bulletOnes;
+  private BossBulletCollection bossBulletOnes;
   private Background background = new Background();
+
   public Controller(Hero hero, ViewFrame view) {
+    System.out.println("?????");
     this.hero = hero;
     this.view = view;
     this.view.addMouseAListener(this);
@@ -47,10 +62,9 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   }
 
   public void Initialization() {
-    this.enemyOne = new Enemy(Constants.enemyOneImagePath, Constants.enemyOneXspeed,
-        Constants.enemyOneYspeed, Constants.enemyOneLife, 1);
-    this.enemyOnes = new Enemy[0];
+    this.enemyOnes = new EnemyCollection();
     this.bulletOnes = new BulletCollection();
+    this.bossBulletOnes = new BossBulletCollection();
     /* Step 7*/
     this.bossOnes = new BossCollection();
   }
@@ -60,16 +74,15 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     new Timer(70, this).start();
   }
 
-  public void createEnemys() {
-    // 控制住敌机生成的频率
-    enemyOneIndex++;
-    if (enemyOneIndex % 96 == 0) {
-      enemyOneIndex = 0;
-      Enemy enemy = new Enemy(Constants.enemyOneImagePath, Constants.enemyOneXspeed,
-          Constants.enemyOneYspeed, Constants.enemyOneLife, 1);
-      enemyOnes = Arrays.copyOf(enemyOnes, enemyOnes.length + 1);
-      enemyOnes[enemyOnes.length - 1] = enemy;
-      System.out.println("敌机1：" + enemyOnes.length);
+  public void createEnemies(EnemyCollection enemies, String enemyImagePath, int enemyXspeed, int enemyYspeed, int enemyLife, int enemyType) {
+    enemies.setEnemyIndex(enemies.getEnemyIndex() + 1);
+    if (enemies.getEnemyIndex() % 96 == 0) {
+      enemies.setEnemyIndex(0);
+      Enemy enemy = new Enemy(enemyImagePath, enemyXspeed,
+          enemyYspeed, enemyLife, enemyType);
+      enemies.setEnemyArray(Arrays.copyOf(enemies.getEnemyArray(), enemies.getEnemyArray().length + 1));
+      enemies.getEnemyArray()[enemies.getEnemyArray().length - 1] = enemy;
+      System.out.println("Enemys：" + enemies.getEnemyArray().length);
     }
   }
 
@@ -136,11 +149,12 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       }
     }
   }
+
   /* Step 8 */
   public void createBoss(BossCollection bosses, int typeVal) {
     // 控制住敌机生成的频率
     bosses.setBossIndex(bosses.getBossIndex() + 1);
-    if (bosses.getBossIndex() % 100 == 0) {
+    if (bosses.getBossIndex() % 1000 == 0) {
       bosses.setBossIndex(0);
       Boss boss = null;
       if(typeVal == 1) {
@@ -153,48 +167,78 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     }
 
   }
-  public void moveEnemys() {
-    // 面板中每架敌机都得移动
-    for (Enemy one : enemyOnes) {
+
+  public void creatBossBullets(BossCollection bosses, BossBulletCollection bossBullets, String bossBulletImagePath, int bossBulletWidth, int typeVal, int level) {
+    if (status == 1) {
+      for (int i = 0; i < bosses.getBossArray().length; i++) {
+        if (bosses.getBossArray()[i] != null) {
+          bossBullets.setBossBulletIndex(bossBullets.getBossBulletIndex() + 1);
+          if (bossBullets.getBossBulletIndex() % 200 == 0) {
+            bossBullets.setBossBulletIndex(0);
+            // Shoot two bullets
+            BossBullet bullet1 = new BossBullet(
+                bosses.getBossArray()[i].getCoordinate().getX() + bosses.getBossArray()[i].getWidth() / 4 - bossBulletWidth,
+                bosses.getBossArray()[i].getCoordinate().getY() + bosses.getBossArray()[i].getHeight() / 2, bossBulletImagePath, typeVal, level );
+            BossBullet bullet2 = new BossBullet(
+                bosses.getBossArray()[i].getCoordinate().getX() + bosses.getBossArray()[i].getWidth() * 3 / 4 - bossBulletWidth,
+                bosses.getBossArray()[i].getCoordinate().getY() + bosses.getBossArray()[i].getHeight() / 2, bossBulletImagePath, typeVal, level);
+            BossBullet[] bossBulletsCopy = Arrays.copyOf(bossBullets.getBossBulletArray(), bossBullets.getBossBulletArray().length + 2);
+            bossBulletsCopy[bossBulletsCopy.length - 2] = bullet1;
+            bossBulletsCopy[bossBulletsCopy.length - 1] = bullet2;
+            System.out.println("Boss bullet：" + bossBulletsCopy.length);
+            bossBullets.setBossBulletArray(bossBulletsCopy);
+          }
+        }
+      }
+
+    }
+
+  }
+
+  public void moveEnemies(EnemyCollection enemies) {
+    for (Enemy one : enemies.getEnemyArray()) {
       one.move();
     }
   }
 
   /* Step 9 */
   public void moveBoss(BossCollection bosses) {
-    // 面板中每架敌机都得移动
-    for (int i = 0; i < bosses.getBossArray().length; i++) {
-      bosses.getBossArray()[i].move();
+    for (Boss one : bosses.getBossArray()) {
+      one.move();
     }
   }
 
   public void moveBullets(BulletCollection bullets) {
-    // 面板中每发子弹都得移动
-    for (int i = 0; i < bullets.getBulletArray().length; i++) {
-      bullets.getBulletArray()[i].move();
+    for (Bullet one: bullets.getBulletArray()) {
+      one.move();
     }
   }
 
+  public void moveBossBullets(BossBulletCollection bossBullets) {
+    for (BossBullet one : bossBullets.getBossBulletArray()) {
+      one.move();
+    }
+  }
 
-  public void EnemyHitHero() {
-    for (int i = 0; i < enemyOnes.length; i++) {
-      if (enemyOnes[i] != null) {
+  public void enemyHitHero(EnemyCollection enemies) {
+    for (int i = 0; i < enemies.getEnemyArray().length; i++) {
+      if (enemies.getEnemyArray()[i] != null) {
         if ((
-            hero.getCoordinate().getX() - hero.getWidth() / 2 >= enemyOnes[i].getCoordinate().getX()
+            hero.getCoordinate().getX() - hero.getWidth() / 2 >= enemies.getEnemyArray()[i].getCoordinate().getX()
                 && hero.getCoordinate().getX() - hero.getWidth() / 2
-                <= enemyOnes[i].getCoordinate().getX() + enemyOnes[i].getWidth()) || (
-            hero.getCoordinate().getX() + hero.getWidth() / 2 >= enemyOnes[i].getCoordinate().getX()
+                <= enemies.getEnemyArray()[i].getCoordinate().getX() + enemies.getEnemyArray()[i].getWidth()) || (
+            hero.getCoordinate().getX() + hero.getWidth() / 2 >= enemies.getEnemyArray()[i].getCoordinate().getX()
                 && hero.getCoordinate().getX() + hero.getWidth() / 2
-                <= enemyOnes[i].getCoordinate().getX() + enemyOnes[i].getWidth())) {
-          if ((hero.getCoordinate().getY() >= enemyOnes[i].getCoordinate().getY()
+                <= enemies.getEnemyArray()[i].getCoordinate().getX() + enemies.getEnemyArray()[i].getWidth())) {
+          if ((hero.getCoordinate().getY() >= enemies.getEnemyArray()[i].getCoordinate().getY()
               && hero.getCoordinate().getY()
-              <= enemyOnes[i].getCoordinate().getY() + enemyOnes[i].getHeight()) || (
-              hero.getCoordinate().getY() + hero.getHeight() / 2 >= enemyOnes[i].getCoordinate()
+              <= enemies.getEnemyArray()[i].getCoordinate().getY() + enemies.getEnemyArray()[i].getHeight()) || (
+              hero.getCoordinate().getY() + hero.getHeight() / 2 >= enemies.getEnemyArray()[i].getCoordinate()
                   .getY() && hero.getCoordinate().getY() + hero.getHeight() / 2
-                  <= enemyOnes[i].getCoordinate().getY() + enemyOnes[i].getHeight())) {
+                  <= enemies.getEnemyArray()[i].getCoordinate().getY() + enemies.getEnemyArray()[i].getHeight())) {
             hero.setLife(hero.getLife() - 1);
-            enemyOnes[i] = enemyOnes[enemyOnes.length - 1];
-            enemyOnes = Arrays.copyOf(enemyOnes, enemyOnes.length - 1);
+            enemies.getEnemyArray()[i] = enemies.getEnemyArray()[enemies.getEnemyArray().length - 1];
+            enemies.setEnemyArray(Arrays.copyOf(enemies.getEnemyArray(), enemies.getEnemyArray().length - 1));
 
             if (hero.getLife() <= 0) {
               //initialization();
@@ -206,20 +250,42 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     }
   }
 
-  public void bulletHitEnemy(BulletCollection bullets) {
+  public void bossHitHero(BossCollection bosses) {
+    for (int i = 0; i < bosses.getBossArray().length; i++) {
+      if (bosses.getBossArray()[i] != null) {
+        if ((hero.getCoordinate().getX() - hero.getWidth() / 2 >= bosses.getBossArray()[i].getCoordinate().getX() && hero.getCoordinate().getX() - hero.getWidth() / 2 <= bosses.getBossArray()[i].getCoordinate().getX() + bosses.getBossArray()[i].getWidth())
+            || (hero.getCoordinate().getX() + hero.getWidth() / 2 >= bosses.getBossArray()[i].getCoordinate().getX()
+            && hero.getCoordinate().getX() + hero.getWidth() / 2 <= bosses.getBossArray()[i].getCoordinate().getX() + bosses.getBossArray()[i].getWidth())) {
+          if ((hero.getCoordinate().getY()  >= bosses.getBossArray()[i].getCoordinate().getY()
+              && hero.getCoordinate().getY()  <= bosses.getBossArray()[i].getCoordinate().getY() + bosses.getBossArray()[i].getHeight())
+              || (hero.getCoordinate().getY() + hero.getHeight() / 2 >= bosses.getBossArray()[i].getCoordinate().getY()
+              && hero.getCoordinate().getY() + hero.getHeight() / 2 <= bosses.getBossArray()[i].getCoordinate().getY() + bosses.getBossArray()[i].getHeight())) {
+            hero.setLife(hero.getLife() - bosses.getBossArray()[i].getLife());
+            bosses.getBossArray()[i] = bosses.getBossArray()[bosses.getBossArray().length - 1];
+            bosses.setBossArray(Arrays.copyOf(bosses.getBossArray(), bosses.getBossArray().length - 1));
+            if (hero.getLife() <= 0) {
+              status = 3;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  public void bulletHitEnemy(BulletCollection bullets, EnemyCollection enemies) {
     int flag1 = -1;
     int flag2 = -1;
     for (int i = 0; i < bullets.getBulletArray().length; i++) {
-      for (int j = 0; j < enemyOnes.length; j++) {
-        if (bullets.getBulletArray()[i].getCoordinate().getX() >= enemyOnes[j].getCoordinate()
+      for (int j = 0; j < enemies.getEnemyArray().length; j++) {
+        if (bullets.getBulletArray()[i].getCoordinate().getX() >= enemies.getEnemyArray()[j].getCoordinate()
             .getX() && bullets.getBulletArray()[i].getCoordinate().getX()
-            <= enemyOnes[j].getCoordinate().getX() + enemyOnes[j].getWidth()) {
-          if (bullets.getBulletArray()[i].getCoordinate().getY() >= enemyOnes[j].getCoordinate()
+            <= enemies.getEnemyArray()[j].getCoordinate().getX() + enemies.getEnemyArray()[j].getWidth()) {
+          if (bullets.getBulletArray()[i].getCoordinate().getY() >= enemies.getEnemyArray()[j].getCoordinate()
               .getY() && bullets.getBulletArray()[i].getCoordinate().getY()
-              <= enemyOnes[j].getCoordinate().getY() + enemyOnes[j].getHeight()) {
-            enemyOnes[j].setLife(enemyOnes[j].getLife() - 1);
+              <= enemies.getEnemyArray()[j].getCoordinate().getY() + enemies.getEnemyArray()[j].getHeight()) {
+            enemies.getEnemyArray()[j].setLife(enemies.getEnemyArray()[j].getLife() - 1);
             flag2 = i;
-            if (enemyOnes[j].getLife() <= 0) {
+            if (enemies.getEnemyArray()[j].getLife() <= 0) {
               System.out.println("score=" + score);
               flag1 = j;
             }
@@ -228,8 +294,8 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
         }
       }
       while (flag1 != -1) {
-        enemyOnes[flag1] = enemyOnes[enemyOnes.length - 1];
-        enemyOnes = Arrays.copyOf(enemyOnes, enemyOnes.length - 1);
+        enemies.getEnemyArray()[flag1] = enemies.getEnemyArray()[enemies.getEnemyArray().length - 1];
+        enemies.setEnemyArray(Arrays.copyOf(enemies.getEnemyArray(), enemies.getEnemyArray().length - 1));
         score += 2;
         flag1 = -1;
       }
@@ -242,11 +308,69 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     }
   }
 
-  public void removeEnemyOne() {
-    for (int i = 0; i < enemyOnes.length; i++) {
-      if (enemyOnes[i] != null && enemyOnes[i].getCoordinate().getY() > 560 * 2) {
-        enemyOnes[i] = enemyOnes[enemyOnes.length - 1];
-        enemyOnes = Arrays.copyOf(enemyOnes, enemyOnes.length - 1);
+  public void bulletHitBoss(BulletCollection bullets, BossCollection bosses) {
+    int flag1 = -1;
+    int flag2 = -1;
+    for (int i = 0; i < bullets.getBulletArray().length; i++) {
+      for (int j = 0; j < bosses.getBossArray().length; j++) {
+        if (bullets.getBulletArray()[i].getCoordinate().getX() >= bosses.getBossArray()[j].getCoordinate().getX() && bullets.getBulletArray()[i].getCoordinate().getX() <= bosses.getBossArray()[j].getCoordinate().getX() + bosses.getBossArray()[j].getWidth()) {
+          if (bullets.getBulletArray()[i].getCoordinate().getY() >= bosses.getBossArray()[j].getCoordinate().getY() && bullets.getBulletArray()[i].getCoordinate().getY() <= bosses.getBossArray()[j].getCoordinate().getY() + bosses.getBossArray()[j].getHeight()) {
+
+            bosses.getBossArray()[j].setLife(bosses.getBossArray()[j].getLife() - 1);
+            flag2 = i;
+            if (bosses.getBossArray()[j].getLife() <= 0) {
+
+              System.out.println("score=" + score);
+              flag1 = j;
+            }
+            break;
+          }
+        }
+
+      }
+      while (flag1 != -1) {
+        bosses.getBossArray()[flag1] = bosses.getBossArray()[bosses.getBossArray().length - 1];
+        bosses.setBossArray(Arrays.copyOf(bosses.getBossArray(), bosses.getBossArray().length - 1));
+        score += 6;
+        flag1 = -1;
+
+      }
+    }
+    while (flag2 != -1) {
+      bullets.getBulletArray()[flag2] = bullets.getBulletArray()[bullets.getBulletArray().length - 1];
+      bullets.setBulletArray(Arrays.copyOf(bullets.getBulletArray(), bullets.getBulletArray().length - 1));
+      flag2 = -1;
+    }
+  }
+
+  public void bossBulletHitHero(BossBulletCollection bossBullets) {
+    int flag2 = -1;
+    for (int i = 0; i < bossBullets.getBossBulletArray().length; i++) {
+      if (bossBullets.getBossBulletArray()[i].getCoordinate().getX() >= hero.getCoordinate().getX() && bossBullets.getBossBulletArray()[i].getCoordinate().getX() <= hero.getCoordinate().getX() + hero.getWidth()) {
+        if (bossBullets.getBossBulletArray()[i].getCoordinate().getY() >= hero.getCoordinate().getY() && bossBullets.getBossBulletArray()[i].getCoordinate().getY() <= hero.getCoordinate().getY() + hero.getHeight()) {
+          hero.setLife(hero.getLife() - bossBullets.getBossBulletArray()[i].getLevel());
+          flag2 = i;
+          break;
+        }
+      }
+    }
+    while (flag2 != -1) {
+      bossBullets.getBossBulletArray()[flag2] = bossBullets.getBossBulletArray()[bossBullets.getBossBulletArray().length - 1];
+      bossBullets.setBossBulletArray(Arrays.copyOf(bossBullets.getBossBulletArray(), bossBullets.getBossBulletArray().length - 1));
+      flag2 = -1;
+
+    }
+    if (hero.getLife() <= 0) {
+      status = 3;
+    }
+
+  }
+
+  public void removeEnemyOne(EnemyCollection enemies) {
+    for (int i = 0; i < enemies.getEnemyArray().length; i++) {
+      if (enemies.getEnemyArray()[i] != null && enemies.getEnemyArray()[i].getCoordinate().getY() > windowWidth * 2) {
+        enemies.getEnemyArray()[i] = enemies.getEnemyArray()[enemies.getEnemyArray().length - 1];
+        enemies.setEnemyArray(Arrays.copyOf(enemies.getEnemyArray(), enemies.getEnemyArray().length - 1));
       }
     }
   }
@@ -271,6 +395,15 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       }
     }
   }
+
+  public void removeBossBullet(BossBulletCollection bossBullets) {
+    for (int i = 0; i < bossBullets.getBossBulletArray().length; i++) {
+      if (bossBullets.getBossBulletArray()[i] != null && bossBullets.getBossBulletArray()[i].getCoordinate().getY() < -windowHeight) {
+        bossBullets.getBossBulletArray()[i] = bossBullets.getBossBulletArray()[bossBullets.getBossBulletArray().length - 1];
+        bossBullets.setBossBulletArray(Arrays.copyOf(bossBullets.getBossBulletArray(), bossBullets.getBossBulletArray().length - 1));
+      }
+    }
+  }
   public void moveBackground() {
     background.move();
   }
@@ -286,24 +419,30 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     this.view.setBackground(this.background.getCoordinate());
     hero.move();
     moveBackground();
-    createEnemys();
-    moveEnemys();
-    EnemyHitHero();
+    createEnemies(this.enemyOnes,enemyOneImagePath, enemyOneXspeed, enemyOneYspeed, enemyOneLife, enemyOneType);
+    moveEnemies(this.enemyOnes);
+    enemyHitHero(this.enemyOnes);
+    bossHitHero(this.bossOnes);
     createBullets(this.bulletOnes, 1, bulletOneWidth, bulletOneImagePath);
     moveBullets(this.bulletOnes);
     removeBullet(this.bulletOnes);
-    bulletHitEnemy(this.bulletOnes);
+    bulletHitEnemy(this.bulletOnes,this.enemyOnes);
+    bulletHitBoss(this.bulletOnes, this.bossOnes);
     /* Step 11: call the action functions */
     createBoss(this.bossOnes,1);
     moveBoss(this.bossOnes);
     removeBoss(this.bossOnes);
-    removeEnemyOne();
-
+    removeEnemyOne(this.enemyOnes);
+    creatBossBullets(this.bossOnes, this.bossBulletOnes, bossBulletOneImagePath,bossBulletOneWidth, bossBulletOneType, bossBulletOneLevel);
+    bossBulletHitHero(this.bossBulletOnes);
+    moveBossBullets(this.bossBulletOnes);
+    removeBossBullet(this.bossBulletOnes);
     /* Step 12: set the updated info to view */
     this.view.setHeroImage(this.hero.getImage());
     this.view.setHeroCoordinate(this.hero.getCoordinate());
-    this.view.setEnemyOnes(this.enemyOnes);
+    this.view.setEnemyOnes(this.enemyOnes.getEnemyArray());
     this.view.setBulletOnes(this.bulletOnes.getBulletArray());
+    this.view.setBossBulletOnes(this.bossBulletOnes.getBossBulletArray());
     this.view.setBossOnes(this.bossOnes.getBossArray());
 
     view.paint();
