@@ -9,7 +9,6 @@ public class Main {
 
     Hero hero = new Hero();
     ViewFrame view = new ViewFrame();
-    System.out.print("hiiiiii");
     Controller controller = new Controller(hero, view);
     controller.go();
   }

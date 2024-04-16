@@ -56,12 +56,10 @@ public class ViewPanel extends JPanel {
 
   @Override
   protected void paintComponent(Graphics g) {
-    System.out.println("wtttttttttffffff");
     super.paintComponent(g);
     // Draw background
     if (backgroundCoordinate != null) {
       g.drawImage(backImage.getImage(), 0, backgroundCoordinate.getY(), this);
-      System.out.println("Y" + backgroundCoordinate.getY());
     }
     // Draw hero
     if (heroCoordinate != null) {
@@ -100,7 +98,9 @@ public class ViewPanel extends JPanel {
     // Draw bossBullet
     if (bossBulletOnes != null) {
       for (int i = 0; i < bossBulletOnes.length; i++) {
-        g.drawImage(bossBulletOnes[i].getImage().getImage(), bossBulletOnes[i].getCoordinate().getX(), bossBulletOnes[i].getCoordinate().getY(), null);
+        g.drawImage(bossBulletOnes[i].getImage().getImage(),
+            bossBulletOnes[i].getCoordinate().getX(), bossBulletOnes[i].getCoordinate().getY(),
+            null);
       }
     }
 

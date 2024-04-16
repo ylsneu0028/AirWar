@@ -5,10 +5,12 @@ import javax.swing.ImageIcon;
 import lombok.Getter;
 
 
-public class BossBullet extends AbstractBullet{
+public class BossBullet extends AbstractBullet {
+
   @Getter
   private int level;
-  public BossBullet(int X, int Y,  String bossBulletImagePath, int typeVal, int level) {
+
+  public BossBullet(int X, int Y, String bossBulletImagePath, int typeVal, int level) {
     this.coordinate = new Coordinate(X, Y);
     this.image = new ImageIcon(bossBulletImagePath);
     this.width = image.getIconWidth();
@@ -18,7 +20,7 @@ public class BossBullet extends AbstractBullet{
   }
 
   @Override
-  public void move(){
+  public void move() {
     this.coordinate.setY(this.coordinate.getY() + 2);
   }
 }

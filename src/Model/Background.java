@@ -1,9 +1,11 @@
 package Model;
+
 import Utils.Coordinate;
 import javax.swing.ImageIcon;
 import lombok.Getter;
 
 public class Background {
+
   @Getter
   Coordinate coordinate;
   ImageIcon image;
@@ -22,9 +24,9 @@ public class Background {
 
   public void move() {
     this.coordinate.setY(this.coordinate.getY() + ySpeed);
-    System.out.println("Bk"+ this.coordinate.getY());
+    System.out.println("Bk" + this.coordinate.getY());
     //System.out.println("this.Y="+this.Y);
-    if (this.coordinate.getY()>= 100) {
+    if (this.coordinate.getY() >= 100) {
       this.coordinate.setY(0);
 
     }
