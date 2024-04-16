@@ -3,6 +3,8 @@ package View;
 import Model.*;
 import Utils.Constants;
 import Utils.Coordinate;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -17,8 +19,11 @@ public class ViewPanel extends JPanel {
   @Setter
   private Coordinate heroCoordinate;
   private ImageIcon enemyOneImage;
+  private ImageIcon enemyTwoImage;
   @Setter
   private Enemy[] enemyOnes;
+  @Setter
+  private Enemy[] enemyTwos;
   @Setter
   private Coordinate backgroundCoordinate = new Coordinate(0, 0);
   private ImageIcon bulletOneImage;
@@ -31,14 +36,21 @@ public class ViewPanel extends JPanel {
   private ImageIcon bossBulletOneImage;
   @Setter
   private BossBullet[] bossBulletOnes;
+  @Setter
+  private int score;
+  @Setter
+  private int life;
+  @Setter
+  private int fire;
 
 
   public ViewPanel() {
     this.backImage = new ImageIcon("image/background.png");
     this.heroImage = new ImageIcon("image/hero1-0.png");
     this.enemyOneImage = new ImageIcon(Constants.enemyOneImagePath);
+    this.enemyTwoImage = new ImageIcon(Constants.enemyTwoImagePath);
     this.bulletOneImage = new ImageIcon(Constants.bulletOneImagePath);
-    this.bulletOneImage = new ImageIcon((Constants.bossOneImagePath));
+    this.bossOneImage = new ImageIcon((Constants.bossOneImagePath));
     this.bossBulletOneImage = new ImageIcon(Constants.bossBulletOneImagePath);
   }
 
@@ -63,6 +75,13 @@ public class ViewPanel extends JPanel {
             enemyOnes[i].getCoordinate().getY(), null);
       }
     }
+
+    if (enemyTwos != null) {
+      for (int i = 0; i < enemyTwos.length; i++) {
+        g.drawImage(enemyTwos[i].getImage().getImage(), enemyTwos[i].getCoordinate().getX(),
+            enemyTwos[i].getCoordinate().getY(), null);
+      }
+    }
     // Draw boss: Step 4
     if (bossOnes != null) {
       for (int i = 0; i < bossOnes.length; i++) {
@@ -84,6 +103,12 @@ public class ViewPanel extends JPanel {
         g.drawImage(bossBulletOnes[i].getImage().getImage(), bossBulletOnes[i].getCoordinate().getX(), bossBulletOnes[i].getCoordinate().getY(), null);
       }
     }
+
+    g.setColor(Color.white);
+    g.setFont(new Font("微软雅黑", Font.BOLD, 22));
+    g.drawString("Score：" + score, 10, 30);
+    g.drawString("Life ：" + life, 10, 60);
+    g.drawString("Fire ：" + fire, 10, 90);
   }
 
   public void setBackground(Coordinate backgroundCoordinate) {

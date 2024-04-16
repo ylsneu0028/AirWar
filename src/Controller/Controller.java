@@ -15,6 +15,11 @@ import static Utils.Constants.enemyOneLife;
 import static Utils.Constants.enemyOneType;
 import static Utils.Constants.enemyOneXspeed;
 import static Utils.Constants.enemyOneYspeed;
+import static Utils.Constants.enemyTwoImagePath;
+import static Utils.Constants.enemyTwoLife;
+import static Utils.Constants.enemyTwoType;
+import static Utils.Constants.enemyTwoXspeed;
+import static Utils.Constants.enemyTwoYspeed;
 import static Utils.Constants.windowHeight;
 import static Utils.Constants.windowWidth;
 
@@ -39,11 +44,12 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   private final Hero hero;
   private final ViewFrame view;
   private Enemy enemyOne;
+  private Enemy enemyTwo;
   private Boss bossOne;
   private Bullet bulletOne;
   private BossBullet bossBulletOne;
-  private int enemyOneIndex = 0;
   private EnemyCollection enemyOnes;
+  private EnemyCollection enemyTwos;
   /* Step 6*/
   private BossCollection bossOnes;
   private BulletCollection bulletOnes;
@@ -63,6 +69,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
 
   public void Initialization() {
     this.enemyOnes = new EnemyCollection();
+    this.enemyTwos = new EnemyCollection();
     this.bulletOnes = new BulletCollection();
     this.bossBulletOnes = new BossBulletCollection();
     /* Step 7*/
@@ -272,7 +279,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     }
   }
 
-  public void bulletHitEnemy(BulletCollection bullets, EnemyCollection enemies) {
+  public void bulletHitEnemy(BulletCollection bullets, EnemyCollection enemies, int typeVal) {
     int flag1 = -1;
     int flag2 = -1;
     for (int i = 0; i < bullets.getBulletArray().length; i++) {
@@ -296,7 +303,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       while (flag1 != -1) {
         enemies.getEnemyArray()[flag1] = enemies.getEnemyArray()[enemies.getEnemyArray().length - 1];
         enemies.setEnemyArray(Arrays.copyOf(enemies.getEnemyArray(), enemies.getEnemyArray().length - 1));
-        score += 2;
+        this.score += typeVal;
         flag1 = -1;
       }
 
@@ -308,7 +315,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     }
   }
 
-  public void bulletHitBoss(BulletCollection bullets, BossCollection bosses) {
+  public void bulletHitBoss(BulletCollection bullets, BossCollection bosses, int typeVal) {
     int flag1 = -1;
     int flag2 = -1;
     for (int i = 0; i < bullets.getBulletArray().length; i++) {
@@ -331,7 +338,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       while (flag1 != -1) {
         bosses.getBossArray()[flag1] = bosses.getBossArray()[bosses.getBossArray().length - 1];
         bosses.setBossArray(Arrays.copyOf(bosses.getBossArray(), bosses.getBossArray().length - 1));
-        score += 6;
+        this.score += typeVal * 10;
         flag1 = -1;
 
       }
@@ -417,17 +424,25 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     createBackground();
     moveBackground();
     this.view.setBackground(this.background.getCoordinate());
+
     hero.move();
     moveBackground();
+
     createEnemies(this.enemyOnes,enemyOneImagePath, enemyOneXspeed, enemyOneYspeed, enemyOneLife, enemyOneType);
     moveEnemies(this.enemyOnes);
     enemyHitHero(this.enemyOnes);
+
+    createEnemies(this.enemyTwos, enemyTwoImagePath, enemyTwoXspeed, enemyTwoYspeed, enemyTwoLife,enemyTwoType);
+    moveEnemies(this.enemyTwos);
+    enemyHitHero(this.enemyTwos);
+
     bossHitHero(this.bossOnes);
     createBullets(this.bulletOnes, 1, bulletOneWidth, bulletOneImagePath);
     moveBullets(this.bulletOnes);
     removeBullet(this.bulletOnes);
-    bulletHitEnemy(this.bulletOnes,this.enemyOnes);
-    bulletHitBoss(this.bulletOnes, this.bossOnes);
+    bulletHitEnemy(this.bulletOnes,this.enemyOnes,1);
+    bulletHitEnemy(this.bulletOnes,this.enemyTwos,2);
+    bulletHitBoss(this.bulletOnes, this.bossOnes, 1);
     /* Step 11: call the action functions */
     createBoss(this.bossOnes,1);
     moveBoss(this.bossOnes);
@@ -441,9 +456,13 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     this.view.setHeroImage(this.hero.getImage());
     this.view.setHeroCoordinate(this.hero.getCoordinate());
     this.view.setEnemyOnes(this.enemyOnes.getEnemyArray());
+    this.view.setEnemyTwos(this.enemyTwos.getEnemyArray());
     this.view.setBulletOnes(this.bulletOnes.getBulletArray());
     this.view.setBossBulletOnes(this.bossBulletOnes.getBossBulletArray());
     this.view.setBossOnes(this.bossOnes.getBossArray());
+    this.view.setScore(this.score);
+    this.view.setLife(this.hero.getLife());
+    this.view.setFire(this.hero.getFire());
 
     view.paint();
   }
@@ -461,6 +480,5 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
 
   public void mouseClicked(MouseEvent e) {
     System.out.println("Mouse click event");
-//    this.go();
   }
 }

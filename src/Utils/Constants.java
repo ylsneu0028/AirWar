@@ -11,12 +11,20 @@ public class Constants {
   public static int enemyOneLife = 1;
   public static int enemyOneXspeed = 3;
   public static int enemyOneYspeed = 3;
-
   public static int enemyOneType = 1;
+
+  // Parameters of Enemy type object enemyTwo
+  public static String enemyTwoImagePath = "image/enemy2.png";
+  public static int enemyTwoLife = 6;
+  public static int enemyTwoXspeed = 2;
+  public static int enemyTwoYspeed = 2;
+  public static int enemyTwoType = 2;
+
 
   // Parameters of Boss type object bossOne
   public static String bossOneImagePath = "image/boss1.png";
   public static int bossOneLife = 25;
+  public static int bossOneType = 1;
   public static int bossOneXspeed = 1;
   public static int bossOneYspeed = 1;
 

@@ -41,9 +41,15 @@ public class ViewFrame extends JFrame {
   public void setHeroImage(ImageIcon heroImage) {
     panel.setHeroImage(heroImage);
   }
+  public void setScore(int score){ panel.setScore(score);}
+  public void setLife(int life){ panel.setLife(life);}
+  public void setFire(int fire){ panel.setFire(fire);}
 
   public void setEnemyOnes(Enemy[] enemyOnes) {
     panel.setEnemyOnes(enemyOnes);
+  }
+  public void setEnemyTwos(Enemy[] enemyTwos) {
+    panel.setEnemyTwos(enemyTwos);
   }
 
   /* Step 5*/
