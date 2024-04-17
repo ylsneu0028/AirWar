@@ -535,27 +535,28 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     // Update other game states
     if(status == 1){
       moveBackground();
-      this.view.setBackground(this.background.getCoordinate());
 
       hero.move();
 
       createEnemies(this.enemyOnes, enemyOneImagePath, enemyOneXspeed, enemyOneYspeed, enemyOneLife,
           enemyOneType);
       moveEnemies(this.enemyOnes);
+      removeEnemyOne(this.enemyOnes);
+      enemyHitHero(this.enemyOnes);
 
       createEnemies(this.enemyTwos, enemyTwoImagePath, enemyTwoXspeed, enemyTwoYspeed, enemyTwoLife,
           enemyTwoType);
       moveEnemies(this.enemyTwos);
       enemyHitHero(this.enemyTwos);
 
-      bossHitHero(this.bossOnes);
+
       createBullets(this.bulletOnes, 1, bulletOneWidth, bulletOneImagePath);
       moveBullets(this.bulletOnes);
       removeBullet(this.bulletOnes);
       bulletHitEnemy(this.bulletOnes, this.enemyOnes, 1);
       bulletHitEnemy(this.bulletOnes, this.enemyTwos, 2);
       bulletHitBoss(this.bulletOnes, this.bossOnes, 1);
-      //moveBullets(this.bulletOnes);
+
       createBuffs(this.buffOnes);
       moveBuffs(this.buffOnes);
       removeBuffOne(this.buffOnes);
@@ -564,13 +565,16 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       createBoss(this.bossOnes, 1);
       moveBoss(this.bossOnes);
       removeBoss(this.bossOnes);
-      removeEnemyOne(this.enemyOnes);
+      bossHitHero(this.bossOnes);
+
       creatBossBullets(this.bossOnes, this.bossBulletOnes, bossBulletOneImagePath, bossBulletOneWidth,
           bossBulletOneType, bossBulletOneLevel);
       bossBulletHitHero(this.bossBulletOnes);
       moveBossBullets(this.bossBulletOnes);
       removeBossBullet(this.bossBulletOnes);
+
       /* Step 12: set the updated info to view */
+      this.view.setBackground(this.background.getCoordinate());
       this.view.setHeroImage(this.hero.getImage());
       this.view.setHeroCoordinate(this.hero.getCoordinate());
       this.view.setEnemyOnes(this.enemyOnes.getEnemyArray());
