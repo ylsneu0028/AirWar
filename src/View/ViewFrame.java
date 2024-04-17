@@ -17,13 +17,13 @@ public class ViewFrame extends JFrame {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(true);
 
-    System.out.println("1111");
+
     this.panel = new ViewPanel();
-    System.out.println("2222");
+
     this.add(panel);
-    System.out.println("33333");
+
     this.setVisible(true);
-    System.out.println("444444");
+
 
   }
 
@@ -36,8 +36,10 @@ public class ViewFrame extends JFrame {
     panel.setHeroCoordinate(coordinate);
   }
 
-  public void setBackground(Coordinate backgroundCoordinate) { panel.setBackground(backgroundCoordinate);}
-
+  //public void setBackground(Coordinate backgroundCoordinate) { panel.setBackground(backgroundCoordinate);}
+  public void setBackground(Coordinate backgroundCoordinate) {
+    panel.setBackgroundCoordinate(backgroundCoordinate);
+  }
   public void setHeroImage(ImageIcon heroImage) {
     panel.setHeroImage(heroImage);
   }
@@ -57,6 +59,8 @@ public class ViewFrame extends JFrame {
     panel.setBossOnes(bossOnes);
   }
   public void setBulletOnes(Bullet[] bulletOnes) { panel.setBulletOnes(bulletOnes);}
+
+  public void setBuffOnes(Buff[] buffOnes) { panel.setBuffOnes(buffOnes);}
 
   public void setBossBulletOnes(BossBullet[] bossBulletOnes) { panel.setBossBulletOnes(bossBulletOnes);}
 

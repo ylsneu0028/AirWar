@@ -16,16 +16,22 @@ public class ViewPanel extends JPanel {
   private ImageIcon backImage;
   @Setter
   private ImageIcon heroImage;
+  private ImageIcon startImage;
   @Setter
   private Coordinate heroCoordinate;
   private ImageIcon enemyOneImage;
   private ImageIcon enemyTwoImage;
   @Setter
+  private ImageIcon buffImage;
+  @Setter
   private Enemy[] enemyOnes;
   @Setter
   private Enemy[] enemyTwos;
   @Setter
-  private Coordinate backgroundCoordinate = new Coordinate(0, 0);
+  private Buff[] buffOnes ;
+  //private Coordinate backgroundCoordinate = new Coordinate(0, 0);
+  @Setter
+  private Coordinate backgroundCoordinate;
   private ImageIcon bulletOneImage;
   @Setter
   private Bullet[] bulletOnes;
@@ -46,23 +52,25 @@ public class ViewPanel extends JPanel {
 
   public ViewPanel() {
     this.backImage = new ImageIcon("image/background.png");
+    this.startImage = new ImageIcon((Constants.startImagePath));
     this.heroImage = new ImageIcon("image/hero1-0.png");
     this.enemyOneImage = new ImageIcon(Constants.enemyOneImagePath);
     this.enemyTwoImage = new ImageIcon(Constants.enemyTwoImagePath);
     this.bulletOneImage = new ImageIcon(Constants.bulletOneImagePath);
     this.bossOneImage = new ImageIcon((Constants.bossOneImagePath));
     this.bossBulletOneImage = new ImageIcon(Constants.bossBulletOneImagePath);
+    this.buffImage = new ImageIcon(Constants.buffOneImagePath);
   }
 
   @Override
   protected void paintComponent(Graphics g) {
-    System.out.println("wtttttttttffffff");
     super.paintComponent(g);
-    // Draw background
-    if (backgroundCoordinate != null) {
+    if(backgroundCoordinate != null) {
+      // Draw background
       g.drawImage(backImage.getImage(), 0, backgroundCoordinate.getY(), this);
-      System.out.println("Y" + backgroundCoordinate.getY());
+      System.out.println(backgroundCoordinate.getY());
     }
+
     // Draw hero
     if (heroCoordinate != null) {
       g.drawImage(heroImage.getImage(), heroCoordinate.getX(), heroCoordinate.getY(), this);
@@ -104,6 +112,14 @@ public class ViewPanel extends JPanel {
       }
     }
 
+    // Draw Buff
+    if(buffOnes != null){
+      for (int i = 0; i < buffOnes.length; i++) {
+        g.drawImage(buffOnes[i].getImage().getImage(), buffOnes[i].getCoordinate().getX(),
+            buffOnes[i].getCoordinate().getY(), null);
+      }
+    }
+
     g.setColor(Color.white);
     g.setFont(new Font("微软雅黑", Font.BOLD, 22));
     g.drawString("Score：" + score, 10, 30);
@@ -111,6 +127,4 @@ public class ViewPanel extends JPanel {
     g.drawString("Fire ：" + fire, 10, 90);
   }
 
-  public void setBackground(Coordinate backgroundCoordinate) {
-  }
 }

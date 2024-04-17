@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 public class Constants {
   public static int windowWidth = 560;
   public static int windowHeight = 824;
+  public static String startImagePath = "image/start1.png";
 
   // Parameters of Enemy type object enemyOne
   public static String enemyOneImagePath = "image/enemy1.png";
@@ -37,6 +38,13 @@ public class Constants {
   public static int bossBulletOneWidth = new ImageIcon(bossBulletOneImagePath).getIconWidth();
   public static int bossBulletOneLevel = 2;
   public static int bossBulletOneType = 1;
+
+  public static String buffOneImagePath = "image/buff1.png";
+  public static int buffOneXspeed = 1;
+  public static int buffOneYspeed = 1;
+  public static int buffOneType = 1;
+
+  //
 
 
 
