@@ -62,11 +62,6 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     this.hero = hero;
     this.view = view;
     this.view.addMouseAListener(this);
-    //this.view.setBackground(this.background.getCoordinate());
-    //this.view.setBackground(this.background.getCoordinate());
-    //this.view.setHeroImage(this.hero.getImage());
-    //this.view.setHeroCoordinate(this.hero.getCoordinate());
-
   }
 
   public void Initialization() {
@@ -520,9 +515,6 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     }
   }
 
-//  public void moveBackground() {
-//    background.move();
-//  }
 
   public void moveBackground() {
     // Logic to update the background's position
@@ -541,66 +533,70 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
 //    System.out.println("action"+this.background.getCoordinate().getY());
 
     // Update other game states
-    this.view.setBackground(this.background.getCoordinate());
-    hero.move();
-    moveBackground();
-    createEnemies(this.enemyOnes, enemyOneImagePath, enemyOneXspeed, enemyOneYspeed, enemyOneLife,
-        enemyOneType);
-    moveEnemies(this.enemyOnes);
-    enemyHitHero(this.enemyOnes);
+    if(status == 1){
+      moveBackground();
+      this.view.setBackground(this.background.getCoordinate());
 
-    createEnemies(this.enemyTwos, enemyTwoImagePath, enemyTwoXspeed, enemyTwoYspeed, enemyTwoLife,
-        enemyTwoType);
-    moveEnemies(this.enemyTwos);
-    enemyHitHero(this.enemyTwos);
+      hero.move();
 
-    bossHitHero(this.bossOnes);
-    createBullets(this.bulletOnes, 1, bulletOneWidth, bulletOneImagePath);
-    moveBullets(this.bulletOnes);
-    removeBullet(this.bulletOnes);
-    bulletHitEnemy(this.bulletOnes, this.enemyOnes, 1);
-    bulletHitEnemy(this.bulletOnes, this.enemyTwos, 2);
-    bulletHitBoss(this.bulletOnes, this.bossOnes, 1);
-    //moveBullets(this.bulletOnes);
-    createBuffs(this.buffOnes);
-    moveBuffs(this.buffOnes);
-    removeBuffOne(this.buffOnes);
-    BuffHitHero(this.buffOnes);
-    /* Step 11: call the action functions */
-    createBoss(this.bossOnes, 1);
-    moveBoss(this.bossOnes);
-    removeBoss(this.bossOnes);
-    removeEnemyOne(this.enemyOnes);
-    creatBossBullets(this.bossOnes, this.bossBulletOnes, bossBulletOneImagePath, bossBulletOneWidth,
-        bossBulletOneType, bossBulletOneLevel);
-    bossBulletHitHero(this.bossBulletOnes);
-    moveBossBullets(this.bossBulletOnes);
-    removeBossBullet(this.bossBulletOnes);
-    /* Step 12: set the updated info to view */
-    this.view.setHeroImage(this.hero.getImage());
-    this.view.setHeroCoordinate(this.hero.getCoordinate());
-    this.view.setEnemyOnes(this.enemyOnes.getEnemyArray());
-    this.view.setEnemyTwos(this.enemyTwos.getEnemyArray());
-    this.view.setBulletOnes(this.bulletOnes.getBulletArray());
-    this.view.setBossBulletOnes(this.bossBulletOnes.getBossBulletArray());
-    this.view.setBossOnes(this.bossOnes.getBossArray());
-    this.view.setBuffOnes(this.buffOnes.getBuffArray());
-    this.view.setScore(this.score);
-    this.view.setLife(this.hero.getLife());
-    this.view.setFire(this.hero.getFire());
+      createEnemies(this.enemyOnes, enemyOneImagePath, enemyOneXspeed, enemyOneYspeed, enemyOneLife,
+          enemyOneType);
+      moveEnemies(this.enemyOnes);
 
-    view.paint();
+      createEnemies(this.enemyTwos, enemyTwoImagePath, enemyTwoXspeed, enemyTwoYspeed, enemyTwoLife,
+          enemyTwoType);
+      moveEnemies(this.enemyTwos);
+      enemyHitHero(this.enemyTwos);
+
+      bossHitHero(this.bossOnes);
+      createBullets(this.bulletOnes, 1, bulletOneWidth, bulletOneImagePath);
+      moveBullets(this.bulletOnes);
+      removeBullet(this.bulletOnes);
+      bulletHitEnemy(this.bulletOnes, this.enemyOnes, 1);
+      bulletHitEnemy(this.bulletOnes, this.enemyTwos, 2);
+      bulletHitBoss(this.bulletOnes, this.bossOnes, 1);
+      //moveBullets(this.bulletOnes);
+      createBuffs(this.buffOnes);
+      moveBuffs(this.buffOnes);
+      removeBuffOne(this.buffOnes);
+      BuffHitHero(this.buffOnes);
+      /* Step 11: call the action functions */
+      createBoss(this.bossOnes, 1);
+      moveBoss(this.bossOnes);
+      removeBoss(this.bossOnes);
+      removeEnemyOne(this.enemyOnes);
+      creatBossBullets(this.bossOnes, this.bossBulletOnes, bossBulletOneImagePath, bossBulletOneWidth,
+          bossBulletOneType, bossBulletOneLevel);
+      bossBulletHitHero(this.bossBulletOnes);
+      moveBossBullets(this.bossBulletOnes);
+      removeBossBullet(this.bossBulletOnes);
+      /* Step 12: set the updated info to view */
+      this.view.setHeroImage(this.hero.getImage());
+      this.view.setHeroCoordinate(this.hero.getCoordinate());
+      this.view.setEnemyOnes(this.enemyOnes.getEnemyArray());
+      this.view.setEnemyTwos(this.enemyTwos.getEnemyArray());
+      this.view.setBulletOnes(this.bulletOnes.getBulletArray());
+      this.view.setBossBulletOnes(this.bossBulletOnes.getBossBulletArray());
+      this.view.setBossOnes(this.bossOnes.getBossArray());
+      this.view.setBuffOnes(this.buffOnes.getBuffArray());
+      this.view.setScore(this.score);
+      this.view.setLife(this.hero.getLife());
+      this.view.setFire(this.hero.getFire());
+      view.paint();
+    }
+
   }
 
   @Override
   public void mouseMoved(MouseEvent e) {
     System.out.println("Mouse movement event");
     // Mouse movement event
-    int heroWidth = hero.getWidth();
-    int heroHeight = hero.getHeight();
-    Coordinate heroCoordinate = new Coordinate(e.getX() - heroWidth / 2, e.getY() - heroHeight / 2);
-    hero.setCoordinate(heroCoordinate);
-    view.paint();
+      int heroWidth = hero.getWidth();
+      int heroHeight = hero.getHeight();
+      Coordinate heroCoordinate = new Coordinate(e.getX() - heroWidth / 2, e.getY() - heroHeight / 2);
+      hero.setCoordinate(heroCoordinate);
+      view.paint();
+
   }
 
   public void mouseClicked(MouseEvent e) {
@@ -609,6 +605,13 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       status = 1;
       view.setStatus(this.status);
       new Timer(70, this).start();
+    }else if(status == 1){
+      status = 2;
+      view.setStatus(this.status);
+    }else if(status == 2){
+      status = 1;
+      view.setStatus(this.status);
+      view.paint();
     }
   }
 }

@@ -19,6 +19,7 @@ public class ViewPanel extends JPanel {
   @Setter
   private ImageIcon heroImage;
   private ImageIcon startImage;
+  private ImageIcon stopImage;
   @Setter
   private Coordinate heroCoordinate;
   private ImageIcon enemyOneImage;
@@ -55,6 +56,7 @@ public class ViewPanel extends JPanel {
   public ViewPanel() {
     this.backImage = new ImageIcon("image/background.png");
     this.startImage = new ImageIcon((Constants.startImagePath));
+    this.stopImage = new ImageIcon(Constants.stopImagePath);
     this.heroImage = new ImageIcon("image/hero1-0.png");
     this.enemyOneImage = new ImageIcon(Constants.enemyOneImagePath);
     this.enemyTwoImage = new ImageIcon(Constants.enemyTwoImagePath);
@@ -79,9 +81,9 @@ public class ViewPanel extends JPanel {
         break;
       case 1:
         break;
-//      case 2:
-//        g.drawImage(pauseImage.getImage(), 0, 0, null);
-//        break;
+      case 2:
+        g.drawImage(stopImage.getImage(), 0, 0, null);
+        break;
 //      case 3:
 //        g.drawImage(gameoverImage.getImage(), 0, 0, null);
 //        break;

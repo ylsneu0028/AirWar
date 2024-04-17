@@ -6,6 +6,8 @@ public class Constants {
   public static int windowWidth = 560;
   public static int windowHeight = 824;
   public static String startImagePath = "image/start1.png";
+  public static String stopImagePath = "image/stop1.png";
+  public static String gameOverImagePah = "image/gameover1.png";
 
   // Parameters of Enemy type object enemyOne
   public static String enemyOneImagePath = "image/enemy1.png";
