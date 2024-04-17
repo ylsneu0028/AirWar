@@ -32,6 +32,8 @@ public class ViewFrame extends JFrame {
     panel.repaint();
   }
 
+  public void setStatus(int status){panel.setStatus(status);}
+
   public void setHeroCoordinate(Coordinate coordinate) {
     panel.setHeroCoordinate(coordinate);
   }

@@ -13,6 +13,8 @@ import lombok.Setter;
 
 public class ViewPanel extends JPanel {
 
+  @Setter
+  private int status;
   private ImageIcon backImage;
   @Setter
   private ImageIcon heroImage;
@@ -69,6 +71,23 @@ public class ViewPanel extends JPanel {
       // Draw background
       g.drawImage(backImage.getImage(), 0, backgroundCoordinate.getY(), this);
       System.out.println(backgroundCoordinate.getY());
+    }
+
+    switch (status) {
+      case 0:
+        g.drawImage(startImage.getImage(), 0, 0, null);
+        break;
+      case 1:
+        break;
+//      case 2:
+//        g.drawImage(pauseImage.getImage(), 0, 0, null);
+//        break;
+//      case 3:
+//        g.drawImage(gameoverImage.getImage(), 0, 0, null);
+//        break;
+//      case 4:
+//        g.drawImage(victoryImage.getImage(), 0, 0, null);
+//        break;
     }
 
     // Draw hero

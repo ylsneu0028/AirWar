@@ -39,7 +39,7 @@ import View.*;
 
 public class Controller extends MouseAdapter implements ActionListener, MouseListener {
 
-  private int status = 1;
+  private int status = 0; //0: before start; 1: on progress; 2: stop; 3 game over; 4: victory;
   private int score = 0;
   private final Hero hero;
   private final ViewFrame view;
@@ -64,9 +64,8 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     this.view.addMouseAListener(this);
     //this.view.setBackground(this.background.getCoordinate());
     //this.view.setBackground(this.background.getCoordinate());
-    this.view.setHeroImage(this.hero.getImage());
-    this.view.setHeroCoordinate(this.hero.getCoordinate());
-    Initialization();
+    //this.view.setHeroImage(this.hero.getImage());
+    //this.view.setHeroCoordinate(this.hero.getCoordinate());
 
   }
 
@@ -82,9 +81,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   }
 
 
-  public void go() {
-    new Timer(70, this).start();
-  }
+  public void go() {Initialization();}
 
   public void createEnemies(EnemyCollection enemies, String enemyImagePath, int enemyXspeed,
       int enemyYspeed, int enemyLife, int enemyType) {
@@ -608,5 +605,10 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
 
   public void mouseClicked(MouseEvent e) {
     System.out.println("Mouse click event");
+    if(status == 0){
+      status = 1;
+      view.setStatus(this.status);
+      new Timer(70, this).start();
+    }
   }
 }
