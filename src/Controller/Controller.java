@@ -99,7 +99,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       if (bulletArray.getBulletIndex() % 50 == 0) {
         bulletArray.setBulletIndex(0);
         if (hero.getFire() == type) {
-          // 发射双发子弹
+          // Two bullets
           Bullet bullet1 = new Bullet(
               hero.getCoordinate().getX() + hero.getWidth() / 4 - bulletWidth / 2,
               hero.getCoordinate().getY(), bulletImagePath, type);
@@ -113,43 +113,47 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
           bulletCopy[bulletCopy.length - 1] = bullet2;
           bulletArray.setBulletArray(bulletCopy);
         }
-//        else if (hero.getFire() == type + 1) {
-//          // 发射三发子弹
-//          Bullet bullet1 = new Bullet(hero.getCoordinate().getX() + hero.getWidth() / 4 - bulletWidth / 2, hero.getCoordinate().getY(),bulletImagePath,type);
-//          Bullet bullet2 = new Bullet(hero.getCoordinate().getX() + hero.getWidth() * 3 / 4 - bulletWidth / 2,
-//              hero.getCoordinate().getY(), bulletImagePath, type);
-//          Bullet bullet3 = new Bullet(hero.getCoordinate().getX() + hero.getWidth() / 2 - bulletWidth / 2, hero.Y);
-//          bullet1s = Arrays.copyOf(bullet1s, bullet1s.length + 3);
-//          bullet1s[bullet1s.length - 3] = bullet1;
-//          bullet1s[bullet1s.length - 2] = bullet2;
-//          bullet1s[bullet1s.length - 1] = bullet3;
-//          System.out.println("子弹：" + bullet1s.length);
-//        } else if (hero.fire >= 3) {
-//          // 发射四发子弹
-//          Bullet1 bullet1 = new Bullet1(hero.X + hero.width * 1 / 4 - bullet1Image.getIconWidth() / 2,
-//              hero.Y);
-//          Bullet1 bullet2 = new Bullet1(hero.X + hero.width * 2 / 4 - bullet1Image.getIconWidth() / 2,
-//              hero.Y);
-//          Bullet1 bullet3 = new Bullet1(hero.X + hero.width * 3 / 4 - bullet1Image.getIconWidth() / 2,
-//              hero.Y);
-//          Bullet1 bullet4 = new Bullet1(hero.X + hero.width * 4 / 4 - bullet1Image.getIconWidth() / 2,
-//              hero.Y);
-//          bullet1s = Arrays.copyOf(bullet1s, bullet1s.length + 4);
-//          bullet1s[bullet1s.length - 4] = bullet1;
-//          bullet1s[bullet1s.length - 3] = bullet2;
-//          bullet1s[bullet1s.length - 2] = bullet3;
-//          bullet1s[bullet1s.length - 1] = bullet4;
-//          System.out.println("子弹：" + bullet1s.length);
-//        }
+        else if (hero.getFire() == type + 1) {
+          // Three bullets
+          Bullet bullet1 = new Bullet(hero.getCoordinate().getX() + hero.getWidth() / 4 - bulletWidth / 2, hero.getCoordinate().getY(),bulletImagePath,type);
+          Bullet bullet2 = new Bullet(hero.getCoordinate().getX() + hero.getWidth() * 3 / 4 - bulletWidth / 2,
+              hero.getCoordinate().getY(), bulletImagePath, type);
+          Bullet bullet3 = new Bullet(hero.getCoordinate().getX() + hero.getWidth() / 2 - bulletWidth / 2, hero.getCoordinate().getY(),bulletImagePath, type);
+          Bullet[] bulletCopy = Arrays.copyOf(bulletArray.getBulletArray(), bulletArray.getBulletArray().length + 3);
+          bulletCopy[bulletCopy.length - 3] = bullet1;
+          bulletCopy[bulletCopy.length - 2] = bullet2;
+          bulletCopy[bulletCopy.length - 1] = bullet3;
+          bulletArray.setBulletArray((bulletCopy));
+        } else if(hero.getFire() >= type + 2) {
+          // Four bullets
+          Bullet bullet1 = new Bullet(
+              hero.getCoordinate().getX() + hero.getWidth() * 1 / 4 - bulletWidth / 2,
+              hero.getCoordinate().getY(), bulletImagePath, type);
+          Bullet bullet2 = new Bullet(
+              hero.getCoordinate().getX() + hero.getWidth() * 2 / 4 - bulletWidth / 2,
+              hero.getCoordinate().getY(), bulletImagePath, type);
+          Bullet bullet3 = new Bullet(
+              hero.getCoordinate().getX() + hero.getWidth() * 3 / 4 - bulletWidth / 2,
+              hero.getCoordinate().getY(), bulletImagePath, type);
+          Bullet bullet4 = new Bullet(
+              hero.getCoordinate().getX() + hero.getWidth() * 4 / 4 - bulletWidth / 2,
+              hero.getCoordinate().getY(), bulletImagePath, type);
+          Bullet[] bulletCopy = Arrays.copyOf(bulletArray.getBulletArray(),
+              bulletArray.getBulletArray().length + 4);
+          bulletCopy[bulletCopy.length - 4] = bullet1;
+          bulletCopy[bulletCopy.length - 3] = bullet2;
+          bulletCopy[bulletCopy.length - 2] = bullet3;
+          bulletCopy[bulletCopy.length - 1] = bullet4;
+          bulletArray.setBulletArray(bulletCopy);
+        }
+//        } else {
+//          // One bullet
 //
-//        else {
-//          // 发射单发子弹
-//
-//          bullet1Index = 0;
-//          Bullet1 bullet = new Bullet1(hero.X + hero.width / 2 - bullet1Image.getIconWidth() / 2, hero.Y);
-//          bullet1s = Arrays.copyOf(bullet1s, bullet1s.length + 1);
-//          bullet1s[bullet1s.length - 1] = bullet;
-//          System.out.println("子弹：" + bullet1s.length);
+//          bulletArray.setBulletIndex(0);
+//          Bullet bullet = new Bullet(hero.getCoordinate().getX() + hero.getWidth() / 2 - bulletWidth / 2, hero.getCoordinate().getY(), bulletImagePath, type);
+//          Bullet[] bulletCopy = Arrays.copyOf(bulletArray.getBulletArray(), bulletArray.getBulletArray().length + 1);
+//          bulletArray.getBulletArray()[bulletArray.getBulletArray().length - 1] = bullet;
+//          bulletArray.setBulletArray((bulletCopy));
 //        }
       }
     }
@@ -280,8 +284,8 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
                 Arrays.copyOf(enemies.getEnemyArray(), enemies.getEnemyArray().length - 1));
 
             if (hero.getLife() <= 0) {
-              //initialization();
               status = 3;
+              Initialization();
             }
           }
         }
@@ -316,6 +320,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
                 Arrays.copyOf(bosses.getBossArray(), bosses.getBossArray().length - 1));
             if (hero.getLife() <= 0) {
               status = 3;
+              Initialization();
             }
           }
         }
@@ -436,6 +441,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     }
     if (hero.getLife() <= 0) {
       status = 3;
+      Initialization();
     }
 
   }
@@ -527,6 +533,13 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     background = new Background();
   }
 
+  public void judgeScore(){
+    if(score >= 2){
+      status = 4;
+      Initialization();
+    }
+  }
+
   @Override
   public void actionPerformed(ActionEvent e) {
 
@@ -572,6 +585,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       bossBulletHitHero(this.bossBulletOnes);
       moveBossBullets(this.bossBulletOnes);
       removeBossBullet(this.bossBulletOnes);
+      judgeScore();
 
       /* Step 12: set the updated info to view */
       this.view.setBackground(this.background.getCoordinate());
@@ -584,6 +598,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       this.view.setBossOnes(this.bossOnes.getBossArray());
       this.view.setBuffOnes(this.buffOnes.getBuffArray());
       this.view.setScore(this.score);
+      this.view.setStatus(this.status);
       this.view.setLife(this.hero.getLife());
       this.view.setFire(this.hero.getFire());
       view.paint();

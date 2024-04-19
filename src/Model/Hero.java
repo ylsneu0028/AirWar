@@ -23,9 +23,7 @@ public class Hero implements Entity {
     image = new ImageIcon("image/hero1-0.png");
     width = image.getIconWidth();
     height = image.getIconHeight();
-    //score=0;
-    //life=3;
-    fire = 1;//初始值为0
+    fire = 1;
     images = new ImageIcon[4];
     life = 5;
 
