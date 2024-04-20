@@ -1,6 +1,7 @@
 package Utils;
 
 import javax.swing.ImageIcon;
+import java.util.Random;
 
 public class Constants {
   public static int windowWidth = 560;
@@ -14,15 +15,16 @@ public class Constants {
   // Parameters of Enemy type object enemyOne
   public static String enemyOneImagePath = "image/enemy1.png";
   public static int enemyOneLife = 1;
-  public static int enemyOneXspeed = 3;
-  public static int enemyOneYspeed = 3;
+  static Random random  = new Random();
+  public static int enemyOneXspeed = 1 + random.nextInt(5 - 1 + 1);
+  public static int enemyOneYspeed = 1 + random.nextInt(5 - 1 + 1);
   public static int enemyOneType = 1;
 
   // Parameters of Enemy type object enemyTwo
   public static String enemyTwoImagePath = "image/enemy2.png";
   public static int enemyTwoLife = 6;
-  public static int enemyTwoXspeed = 2;
-  public static int enemyTwoYspeed = 2;
+  public static int enemyTwoXspeed = 1 + random.nextInt(10 - 1 + 1);
+  public static int enemyTwoYspeed = 1 + random.nextInt(10 - 1 + 1);
   public static int enemyTwoType = 2;
 
 

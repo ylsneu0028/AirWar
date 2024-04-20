@@ -1,6 +1,8 @@
 package Model;
 
+import Controller.Controller;
 import Utils.Coordinate;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 
 public class Bullet extends AbstractBullet{
@@ -11,6 +13,6 @@ public class Bullet extends AbstractBullet{
     width = image.getIconWidth();
     height = image.getIconHeight();
     type = typeVal;
-
   }
+
 }
