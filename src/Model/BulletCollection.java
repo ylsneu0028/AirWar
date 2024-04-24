@@ -5,21 +5,37 @@ import java.util.Arrays;
 import lombok.Data;
 import Controller.*;
 
+/**
+ * A class responsible for managing the collection of bullet entities in the game.
+ * BulletCollection initializes and maintains the bulletIndex and bulletArray used in the game.
+ */
 @Data
 public class BulletCollection {
   public int bulletIndex;
   public Bullet[] bulletArray;
 
+  /**
+   * Constructs a new BulletCollection object with default values.
+   * The bullet index is initialized to 0, and the bullet array is initialized to an empty array.
+   */
   public BulletCollection() {
     this.bulletIndex = 0;
     this.bulletArray = new Bullet[0];
   }
 
+  /**
+   * Creates new bullet entities and adds them to the bullet array.
+   * Bullets are created periodically based on predefined conditions.
+   * @param bulletArray The collection of bullet entities.
+   * @param type The type of the bullet.
+   * @param bulletWidth The width of the bullet.
+   * @param bulletImagePath The path to the image file representing the bullet.
+   */
   public void createBullets(BulletCollection bulletArray, int type, int bulletWidth,
       String bulletImagePath) {
     if (Controller.status == 1) {
       bulletArray.setBulletIndex(bulletArray.getBulletIndex() + 1);
-      if (bulletArray.getBulletIndex() % 50 == 0) {
+      if (bulletArray.getBulletIndex() % 35 == 0) {
         bulletArray.setBulletIndex(0);
         if (Controller.hero.getFire() == type) {
           // Two bullets
@@ -73,12 +89,23 @@ public class BulletCollection {
     }
   }
 
+  /**
+   * Moves all bullet entities in the collection.
+   * @param bullets The collection of bullet entities.
+   */
   public void moveBullets(BulletCollection bullets) {
     for (Bullet one : bullets.getBulletArray()) {
       one.move();
     }
   }
 
+  /**
+   * Checks for collision between bullets and enemy entities.
+   * If a collision occurs, the enemy's attributes are updated accordingly, and the bullet entity is removed from the collection.
+   * @param bullets The collection of bullet entities.
+   * @param enemies The collection of enemy entities.
+   * @param typeVal The value used for scoring.
+   */
   public void bulletHitEnemy(BulletCollection bullets, EnemyCollection enemies, int typeVal) {
     int flag1 = -1;
     int flag2 = -1;
@@ -122,16 +149,27 @@ public class BulletCollection {
     }
   }
 
+  /**
+   * Checks for collision between bullets and boss entities.
+   * If a collision occurs, the boss's attributes are updated accordingly, and the bullet entity is removed from the collection.
+   * @param bullets The collection of bullet entities.
+   * @param bosses The collection of boss entities.
+   * @param typeVal The value used for scoring.
+   */
   public void bulletHitBoss(BulletCollection bullets, BossCollection bosses, int typeVal) {
+    // Initialize flags to track boss and bullet collisions// Initialize flags to track boss and bullet collisions
     int flag1 = -1;
     int flag2 = -1;
+
     for (int i = 0; i < bullets.getBulletArray().length; i++) {
       for (int j = 0; j < bosses.getBossArray().length; j++) {
+        // Check if the bullet's x-coordinate is within the boss's x-coordinate range
         if (bullets.getBulletArray()[i].getCoordinate().getX()
             >= bosses.getBossArray()[j].getCoordinate().getX()
             && bullets.getBulletArray()[i].getCoordinate().getX()
             <= bosses.getBossArray()[j].getCoordinate().getX()
             + bosses.getBossArray()[j].getWidth()) {
+          // Check if the bullet's y-coordinate is within the boss's y-coordinate range
           if (bullets.getBulletArray()[i].getCoordinate().getY()
               >= bosses.getBossArray()[j].getCoordinate().getY()
               && bullets.getBulletArray()[i].getCoordinate().getY()
@@ -148,8 +186,8 @@ public class BulletCollection {
             break;
           }
         }
-
       }
+      // Remove the bullet that collided with the boss
       while (flag1 != -1) {
         bosses.getBossArray()[flag1] = bosses.getBossArray()[bosses.getBossArray().length - 1];
         bosses.setBossArray(Arrays.copyOf(bosses.getBossArray(), bosses.getBossArray().length - 1));
@@ -158,6 +196,7 @@ public class BulletCollection {
 
       }
     }
+    // Remove the bullet that collided with the boss
     while (flag2 != -1) {
       bullets.getBulletArray()[flag2] = bullets.getBulletArray()[bullets.getBulletArray().length
           - 1];
@@ -167,6 +206,10 @@ public class BulletCollection {
     }
   }
 
+  /**
+   * Removes bullet entities that have moved off the screen.
+   * @param bullets The collection of bullet entities.
+   */
   public void removeBullet(BulletCollection bullets) {
     for (int i = 0; i < bullets.getBulletArray().length; i++) {
       if (bullets.getBulletArray()[i] != null

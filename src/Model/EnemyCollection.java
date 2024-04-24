@@ -19,7 +19,7 @@ public class EnemyCollection {
   public void createEnemies(EnemyCollection enemies, String enemyImagePath, int enemyXspeed,
       int enemyYspeed, int enemyLife, int enemyType) {
     enemies.setEnemyIndex(enemies.getEnemyIndex() + 1);
-    if (enemies.getEnemyIndex() % 96 == 0) {
+    if (enemies.getEnemyIndex() % 76 == 0) {
       enemies.setEnemyIndex(0);
       Enemy enemy = new Enemy(enemyImagePath, enemyXspeed, enemyYspeed, enemyLife, enemyType);
       enemies.setEnemyArray(

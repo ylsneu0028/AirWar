@@ -16,15 +16,15 @@ public class Constants {
   public static String enemyOneImagePath = "image/enemy1.png";
   public static int enemyOneLife = 1;
   static Random random  = new Random();
-  public static int enemyOneXspeed = 1 + random.nextInt(5 - 1 + 1);
-  public static int enemyOneYspeed = 1 + random.nextInt(5 - 1 + 1);
+  public static int enemyOneXspeed = 1 + random.nextInt(10 - 1 + 1);
+  public static int enemyOneYspeed = 1 + random.nextInt(10 - 1 + 1);
   public static int enemyOneType = 1;
 
   // Parameters of Enemy type object enemyTwo
   public static String enemyTwoImagePath = "image/enemy2.png";
-  public static int enemyTwoLife = 6;
-  public static int enemyTwoXspeed = 1 + random.nextInt(10 - 1 + 1);
-  public static int enemyTwoYspeed = 1 + random.nextInt(10 - 1 + 1);
+  public static int enemyTwoLife = 3;
+  public static int enemyTwoXspeed = 1 + random.nextInt(6 - 1 + 1);
+  public static int enemyTwoYspeed = 1 + random.nextInt(6 - 1 + 1);
   public static int enemyTwoType = 2;
 
 
@@ -46,8 +46,8 @@ public class Constants {
   public static int bossBulletOneType = 1;
 
   public static String buffOneImagePath = "image/buff1.png";
-  public static int buffOneXspeed = 1;
-  public static int buffOneYspeed = 1;
+  public static int buffOneXspeed = 5;
+  public static int buffOneYspeed = 5;
   public static int buffOneType = 1;
 
   //

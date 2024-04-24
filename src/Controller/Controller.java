@@ -93,7 +93,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   }
 
   public void judgeScore() {
-    if (score >= 20) {
+    if (score >= 15) {
       status = 4;
       Initialization();
     }

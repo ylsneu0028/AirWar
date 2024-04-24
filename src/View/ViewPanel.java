@@ -146,7 +146,7 @@ public class ViewPanel extends JPanel {
     }
 
     g.setColor(Color.white);
-    g.setFont(new Font("微软雅黑", Font.BOLD, 22));
+    g.setFont(new Font("Times New Roman", Font.BOLD, 22));
     g.drawString("Score：" + score, 10, 30);
     g.drawString("Life ：" + life, 10, 60);
     g.drawString("Fire ：" + fire, 10, 90);
