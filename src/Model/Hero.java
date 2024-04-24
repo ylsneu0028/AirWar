@@ -5,6 +5,10 @@ import lombok.Data;
 import lombok.Setter;
 import Utils.*;
 
+/**
+ * Represents the hero entity controlled by the player.
+ * The hero can move horizontally and shoot bullets to destroy enemies.
+ */
 @Data
 public class Hero implements Entity {
 
@@ -18,14 +22,15 @@ public class Hero implements Entity {
   private ImageIcon[] images;
   private int index;
 
+  /**
+   * Constructs a Hero object with default parameters.
+   */
   public Hero() {
     coordinate = new Coordinate(140, 400);
     image = new ImageIcon("image/hero1-0.png");
     width = image.getIconWidth();
     height = image.getIconHeight();
-    //score=0;
-    //life=3;
-    fire = 1;//初始值为0
+    fire = 1;
     images = new ImageIcon[4];
     life = 5;
 
