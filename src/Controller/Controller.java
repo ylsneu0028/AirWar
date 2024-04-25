@@ -49,15 +49,15 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   private Boss bossOne;
   private Bullet bulletOne;
   private BossBullet bossBulletOne;
-  private EnemyCollection enemyOnes;
-  private EnemyCollection enemyTwos;
+  public EnemyCollection enemyOnes;
+  public EnemyCollection enemyTwos;
   private Buff buffOne;
-  private BuffCollection buffOnes;
+  public BuffCollection buffOnes;
   /* Step 6*/
-  private BossCollection bossOnes;
-  private BulletCollection bulletOnes;
-  private BossBulletCollection bossBulletOnes;
-  private Background background = new Background();
+  public BossCollection bossOnes;
+  public BulletCollection bulletOnes;
+  public BossBulletCollection bossBulletOnes;
+  public Background background = new Background();
 
   public Controller(Hero hero, ViewFrame view) {
     this.hero = hero;
