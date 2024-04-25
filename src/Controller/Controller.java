@@ -148,7 +148,6 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
         Initialization();
       }
 
-      /* Step 12: set the updated info to view */
       this.view.setBackground(this.background.getCoordinate());
       this.view.setHeroImage(this.hero.getImage());
       this.view.setHeroCoordinate(this.hero.getCoordinate());

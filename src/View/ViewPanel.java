@@ -40,7 +40,6 @@ public class ViewPanel extends JPanel {
   private ImageIcon bulletOneImage;
   @Setter
   private Bullet[] bulletOnes;
-  /* Step 3 */
   private ImageIcon bossOneImage;
   @Setter
   private Boss[] bossOnes;
