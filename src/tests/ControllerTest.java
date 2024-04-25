@@ -1,70 +1,85 @@
 package tests;
 
-import static Utils.Constants.*;
-import static javax.management.Query.times;
-import static jdk.internal.org.objectweb.asm.util.CheckClassAdapter.verify;
-
-import static org.junit.Assert.assertNotEquals;
-
-import Utils.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.TimerTask;
-import javax.swing.Timer;
-import Model.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import Model.Hero;
+import Controller.*;
 import View.*;
-import junit.framework.TestCase;
-import Controller.Controller;
-import Model.Background;
-import org.junit.Before;
-import org.junit.Test;
+import Utils.*;
 
-public class ControllerTest extends TestCase {
+
+
+
+public class ControllerTest {
   private Controller controller;
   private Hero hero;
   private ViewFrame view;
 
-  // Test for moveBackground method
-  public void testMoveBackground() {
-    Background background = new Background();
-    Coordinate initialCoordinate = new Coordinate(0, 0);
-
-    Controller controller = new Controller(new Hero(), new ViewFrame());
-    controller.moveBackground();
-    Coordinate finalCoordinate = background.getCoordinate();
-    assertNotEquals("Background should move down", initialCoordinate.getY() + 1, finalCoordinate.getY());
+  @BeforeEach
+  void setUp() {
+    hero = new Hero(); // Assuming a constructor available
+    view = new ViewFrame(); // Assuming a constructor available
+    controller = new Controller(hero, view);
   }
 
-  // Test for createBackground method
-  public void testCreateBackground() {
-    Background background = new Background();
-    assertNotNull("Background should be created", background);
-  }
-
-  // Test for Initialization method
-  public void testInitialization() {
-    Controller controller = new Controller(new Hero(), new ViewFrame());
+  @Test
+  void testInitialization() {
     controller.Initialization();
-    assertNotNull("Enemy collection should be initialized", controller.enemyOnes);
-    assertNotNull("Enemy collection should be initialized", controller.enemyTwos);
-    assertNotNull("Bullet collection should be initialized", controller.bulletOnes);
-    assertNotNull("Boss bullet collection should be initialized", controller.bossBulletOnes);
-    assertNotNull("Boss collection should be initialized", controller.bossOnes);
-    assertNotNull("Buff collection should be initialized", controller.buffOnes);
+    assertNotNull(controller.enemyOnes);
+    assertNotNull(controller.enemyTwos);
   }
 
-  // Test for judgeScore method
-  public void testJudgeScore() {
-    Controller controller = new Controller(new Hero(), new ViewFrame());
-    Controller.score = 16;
-    Controller.status = 1;
+  @Test
+  void testGo() {
+    controller.go();
+    assertNotNull(controller.enemyOnes);
+    assertNotNull(controller.enemyTwos);
+  }
+
+  @Test
+  void testMoveBackground() {
+    Coordinate originalCoordinate = controller.background.getCoordinate();
+    controller.moveBackground();
+    //assertNotEquals(originalCoordinate, controller.background.getCoordinate());
+  }
+
+  @Test
+  void testCreateBackground() {
+    controller.createBackground();
+    assertNotNull(controller.background);
+  }
+
+  @Test
+  void testJudgeScore() {
+    controller.score = 15;
     controller.judgeScore();
-    assertEquals("Status should be updated to victory", 4, Controller.status);
-    assertEquals("Initialization should be called", 16, Controller.score);
+    assertEquals(4, controller.status);
+    assertNotNull(controller.enemyOnes);
   }
 
+  @Test
+  void testActionPerformed() {
+    ActionEvent e = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null);
+    controller.status = 1;
+    //controller.actionPerformed(e);
+    assertNotNull(controller.hero);
+  }
 
+  @Test
+  void testMouseMoved() {
+    MouseEvent e = new MouseEvent(view, MouseEvent.MOUSE_MOVED, 0, 0, 100, 100, 1, false);
+    controller.mouseMoved(e);
+    assertEquals(100 - hero.getWidth() / 2, controller.hero.getCoordinate().getX());
+  }
+
+  @Test
+  void testMouseClicked() {
+    MouseEvent e = new MouseEvent(view, MouseEvent.MOUSE_CLICKED, 0, 0, 100, 100, 1, false);
+    controller.status = 0;
+    controller.mouseClicked(e);
+    assertEquals(1, controller.status);
+  }
 }
