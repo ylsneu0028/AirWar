@@ -4,8 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests of Class Bullet
+ */
 public class BulletTest {
 
+    /**
+     * Tests the constructor
+     */
     @Test
     public void testConstructor() {
         int x = 10;
@@ -23,6 +29,9 @@ public class BulletTest {
         assertNotNull(bullet.getImage(), "Image should not be null.");
     }
 
+    /**
+     * Tests the move method
+     */
     @Test
     public void testBulletMovement() {
         int x = 10;

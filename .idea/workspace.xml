@@ -4,42 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="340660f7-b751-42db-8657-a7d9aadcf19d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/AirWar_1_0_SNAPSHOT.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Air War.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Model/BossBulletCollectionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Model/BossBulletTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Model/BossCollectionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Model/BossTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Model/EnemyCollectionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Model/EnemyTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Utils/CoordinateTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/View/ViewFrameTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AirWar.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AirWar.iml" afterDir="false" />
+    <list default="true" id="340660f7-b751-42db-8657-a7d9aadcf19d" name="Changes" comment="update tests">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/AbstractBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AbstractBuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/BossBulletCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/BossBulletCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ViewFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ViewFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ViewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ViewPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/BackgroundTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/BuffCollectionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/BuffTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/BulletCollectionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/BulletTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/ControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/HeroTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/tests/ControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-Utils.CoordinateTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-Utils.CoordinateTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/Utils.CoordinateTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Utils.CoordinateTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Model/BackgroundTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Model/BackgroundTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Model/BossBulletCollectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Model/BossBulletCollectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Model/BuffTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Model/BuffTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Model/BulletTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Model/BulletTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Model/HeroTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Model/HeroTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +44,10 @@
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/pear/Desktop/AirWar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
@@ -95,11 +73,32 @@
       <option name="presentableId" value="Default" />
       <updated>1714163860184</updated>
       <workItem from="1714163862752" duration="104000" />
-      <workItem from="1714166041521" duration="100000" />
+      <workItem from="1714166041521" duration="1524000" />
     </task>
+    <task id="LOCAL-00001" summary="update tests">
+      <option name="closed" value="true" />
+      <created>1714166176435</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1714166176435</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update tests">
+      <option name="closed" value="true" />
+      <created>1714166181495</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714166181495</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="update tests" />
   </component>
 </project>

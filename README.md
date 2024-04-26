@@ -4,6 +4,9 @@ Air War is a classic shooting game with aircraft as the model. Players control t
 - Install the needed libraries: mvn clean install 
 - Play the game: run Main.main()
 - Run test: mvn test
+## Tools
+- IntelliJ IDEA 2023.3.2
+- Java Version: corretto-1.8
 ## Game Creators
 - Yanyu Wang
 - Yalin Sun

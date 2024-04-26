@@ -4,8 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests of class Buff
+ */
 public class BuffTest {
-
+    /**
+     * Tests constructors
+     */
     @Test
     public void testConstructor() {
         int expectedXspeed = 5;

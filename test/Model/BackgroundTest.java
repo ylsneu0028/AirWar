@@ -5,8 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import Model.Background;
 
+/**
+ * Tests of class Background.
+ */
 public class BackgroundTest {
 
+    /**
+     * Tests constructor
+     */
     @Test
     public void testConstructor() {
         Background background = new Background();
@@ -15,6 +21,9 @@ public class BackgroundTest {
         assertNotNull(background.getImage(), "Background image should not be null");
     }
 
+    /**
+     * Tests move method
+     */
     @Test
     public void testMove() {
         Background background = new Background();

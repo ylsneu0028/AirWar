@@ -8,6 +8,9 @@ import Utils.Coordinate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests of class BossBulletCollection
+ */
 public class BossBulletCollectionTest {
     private BossBulletCollection bossBullets;
     private BossCollection bosses;
