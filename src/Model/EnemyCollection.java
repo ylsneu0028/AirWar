@@ -6,16 +6,33 @@ import java.util.Arrays;
 import lombok.Data;
 import Controller.*;
 
+
+/**
+ * A class responsible for managing the collection of enemy entities in the game.
+ */
 @Data
 public class EnemyCollection {
   public int enemyIndex;
   public Enemy[] enemyArray;
 
+  /**
+   * Constructs a new EnemyCollection object with default values.
+   */
   public EnemyCollection() {
     this.enemyIndex = 0;
     this.enemyArray = new Enemy[0];
   }
 
+  /**
+   * Creates new enemy entities and adds them to the enemy array.
+   * Enemies are created periodically based on predefined conditions.
+   * @param enemies The collection of enemy entities.
+   * @param enemyImagePath The path to the image file representing the enemy.
+   * @param enemyXspeed The horizontal speed of the enemy.
+   * @param enemyYspeed The vertical speed of the enemy.
+   * @param enemyLife The initial life of the enemy.
+   * @param enemyType The type of the enemy.
+   */
   public void createEnemies(EnemyCollection enemies, String enemyImagePath, int enemyXspeed,
       int enemyYspeed, int enemyLife, int enemyType) {
     enemies.setEnemyIndex(enemies.getEnemyIndex() + 1);
@@ -29,12 +46,21 @@ public class EnemyCollection {
     }
   }
 
+  /**
+   * Moves all enemy entities in the collection.
+   * @param enemies The collection of enemy entities.
+   */
   public void moveEnemies(EnemyCollection enemies) {
     for (Enemy one : enemies.getEnemyArray()) {
       one.move();
     }
   }
 
+  /**
+   * Checks for collision between enemy entities and the player character.
+   * If a collision occurs, the player's attributes are updated accordingly, and the enemy entity is removed from the collection.
+   * @param enemies The collection of enemy entities.
+   */
   public void enemyHitHero(EnemyCollection enemies) {
     for (int i = 0; i < enemies.getEnemyArray().length; i++) {
       if (enemies.getEnemyArray()[i] != null) {
@@ -71,6 +97,10 @@ public class EnemyCollection {
     }
   }
 
+  /**
+   * Removes enemy entities that have moved off the screen.
+   * @param enemies The collection of enemy entities.
+   */
   public void removeEnemy(EnemyCollection enemies) {
     for (int i = 0; i < enemies.getEnemyArray().length; i++) {
       if (enemies.getEnemyArray()[i] != null
