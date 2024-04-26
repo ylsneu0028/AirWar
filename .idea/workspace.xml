@@ -5,16 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="340660f7-b751-42db-8657-a7d9aadcf19d" name="Changes" comment="add javadocs">
+      <change afterPath="$PROJECT_DIR$/Resources and Citations" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Model/EnemyCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/EnemyCollection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/Controller.ControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Controller.ControllerTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/Model.BackgroundTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Model.BackgroundTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/Model.BossBulletCollectionTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Model.BossBulletCollectionTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/Model.BossBulletTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Model.BossBulletTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/Model.BossCollectionTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Model.BossCollectionTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/Model.BossTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Model.BossTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/Model.BuffCollectionTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Model.BuffCollectionTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/Model.BuffTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Model.BuffTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/Model.BulletCollectionTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Model.BulletCollectionTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/Model.BulletTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Model.BulletTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/Model.EnemyCollectionTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Model.EnemyCollectionTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/Model.EnemyTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Model.EnemyTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/Model.HeroTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Model.HeroTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-Controller.ControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-Controller.ControllerTest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-Model.BackgroundTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-Model.BackgroundTest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-Model.BossBulletCollectionTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-Model.BossBulletCollectionTest.xml" afterDir="false" />
@@ -34,11 +39,6 @@
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/Utils.CoordinateTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/Utils.CoordinateTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/View.ViewFrameTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/View.ViewFrameTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/View.ViewPanelTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/View.ViewPanelTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/Model/BackgroundTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Model/BackgroundTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/Model/BossBulletCollectionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Model/BossBulletCollectionTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/Model/BuffTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Model/BuffTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/Model/BulletTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Model/BulletTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/Model/HeroTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Model/HeroTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +99,7 @@
       <option name="presentableId" value="Default" />
       <updated>1714163860184</updated>
       <workItem from="1714163862752" duration="104000" />
-      <workItem from="1714166041521" duration="2545000" />
+      <workItem from="1714166041521" duration="3847000" />
     </task>
     <task id="LOCAL-00001" summary="update tests">
       <option name="closed" value="true" />
@@ -133,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714169985866</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add javadocs">
+      <option name="closed" value="true" />
+      <created>1714170490743</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714170490743</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
