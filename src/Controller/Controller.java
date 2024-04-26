@@ -36,8 +36,12 @@ import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import Model.*;
 import View.*;
+import lombok.Data;
 
-
+/**
+ * This class serves as the controller for managing game logic and interactions.
+ */
+@Data
 public class Controller extends MouseAdapter implements ActionListener, MouseListener {
 
   public static int status = 0; //0: before start; 1: on progress; 2: stop; 3 game over; 4: victory;
@@ -59,12 +63,22 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
   public BossBulletCollection bossBulletOnes;
   public Background background = new Background();
 
+
+  /**
+   * Constructs a new Controller object.
+   *
+   * @param hero The hero character controlled by the player.
+   * @param view The graphical view of the game.
+   */
   public Controller(Hero hero, ViewFrame view) {
     this.hero = hero;
     this.view = view;
     this.view.addMouseAListener(this);
   }
 
+  /**
+   * Initializes the game components.
+   */
   public void Initialization() {
     this.enemyOnes = new EnemyCollection();
     this.enemyTwos = new EnemyCollection();
@@ -76,11 +90,16 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     this.createBackground();
   }
 
-
+  /**
+   * Starts the game.
+   */
   public void go() {
     Initialization();
   }
 
+  /**
+   * Moves the background of the game.
+   */
   public void moveBackground() {
     // Logic to update the background's position
     background.move();
@@ -88,10 +107,16 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
     this.view.setBackground(background.getCoordinate());
   }
 
+  /**
+   * Creates the background of the game.
+   */
   public void createBackground() {
     background = new Background();
   }
 
+  /**
+   * Updates the score and checks for victory conditions.
+   */
   public void judgeScore() {
     if (score >= 15) {
       status = 4;
@@ -136,7 +161,7 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       this.bossOnes.removeBoss(this.bossOnes);
       this.bossOnes.bossHitHero(this.bossOnes);
 
-      this.bossBulletOnes.creatBossBullets(this.bossOnes, this.bossBulletOnes,
+      this.bossBulletOnes.createBossBullets(this.bossOnes, this.bossBulletOnes,
           bossBulletOneImagePath, bossBulletOneWidth,
           bossBulletOneType, bossBulletOneLevel);
       this.bossBulletOnes.bossBulletHitHero(this.bossBulletOnes);
@@ -196,17 +221,6 @@ public class Controller extends MouseAdapter implements ActionListener, MouseLis
       view.setStatus(this.status);
       view.paint();
     }
-//    }else if(status == 3){
-//      status = 0;
-//      System.out.println("after 3: " + status);
-//      view.setStatus(this.status);
-//      view.paint();
-//    }else if(status == 4){
-//      status = 0;
-//      System.out.println("after 4: " + status);
-//      view.setStatus(this.status);
-//      view.paint();
-//    }
 
   }
 }

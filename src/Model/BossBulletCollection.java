@@ -35,7 +35,7 @@ public class BossBulletCollection {
    * @param typeVal The type of boss bullets.
    * @param level The level of boss bullets.
    */
-  public void creatBossBullets(BossCollection bosses, BossBulletCollection bossBullets,
+  public void createBossBullets(BossCollection bosses, BossBulletCollection bossBullets,
       String bossBulletImagePath, int bossBulletWidth, int typeVal, int level) {
     if (Controller.status == 1) {
       for (int i = 0; i < bosses.getBossArray().length; i++) {

@@ -8,9 +8,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
+import lombok.Data;
 import lombok.Setter;
 
-
+/**
+ * The ViewPanel class represents a JPanel used for displaying the game view.
+ */
+@Data
 public class ViewPanel extends JPanel {
 
   @Setter
@@ -53,7 +58,9 @@ public class ViewPanel extends JPanel {
   @Setter
   private int fire;
 
-
+  /**
+   *  The constructor of Class ViewPanel
+   */
   public ViewPanel() {
     this.backImage = new ImageIcon("image/background.png");
     this.startImage = new ImageIcon((Constants.startImagePath));
@@ -71,13 +78,15 @@ public class ViewPanel extends JPanel {
 
   @Override
   protected void paintComponent(Graphics g) {
+    // draw background
     super.paintComponent(g);
-    if(backgroundCoordinate != null) {
+    if(backgroundCoordinate != null && backImage != null) {
       // Draw background
       g.drawImage(backImage.getImage(), 0, backgroundCoordinate.getY(), this);
       System.out.println(backgroundCoordinate.getY());
     }
 
+    // draw background of different game status
     switch (status) {
       case 0:
         g.drawImage(startImage.getImage(), 0, 0, null);
@@ -114,7 +123,8 @@ public class ViewPanel extends JPanel {
             enemyTwos[i].getCoordinate().getY(), null);
       }
     }
-    // Draw boss: Step 4
+
+    //Draw Boss
     if (bossOnes != null) {
       for (int i = 0; i < bossOnes.length; i++) {
         g.drawImage(bossOnes[i].getImage().getImage(), bossOnes[i].getCoordinate().getX(),
@@ -144,6 +154,7 @@ public class ViewPanel extends JPanel {
       }
     }
 
+    // Draw information on the top of the screen
     g.setColor(Color.white);
     g.setFont(new Font("Times New Roman", Font.BOLD, 22));
     g.drawString("Score：" + score, 10, 30);

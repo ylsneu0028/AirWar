@@ -1,9 +1,11 @@
 package Model;
 import Utils.Constants;
 import Utils.Coordinate;
+import lombok.Data;
+
 import java.util.Random;
 import javax.swing.ImageIcon;
-import lombok.Data;
+
 
 /**
  * An abstract class representing a buff entity in a game.
